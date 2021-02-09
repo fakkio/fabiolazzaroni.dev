@@ -1,0 +1,16 @@
+@import "./variables";
+
+body {
+  background: url(../images/kites-darts-o.svg) no-repeat;
+  background-color: var(--color-background);
+  background-size: cover;
+  color: var(--color-text);
+  transition: color $darkModeTransitionDuration,
+    background-color $darkModeTransitionDuration;
+}
+
+.layout {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
