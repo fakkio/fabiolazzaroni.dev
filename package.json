@@ -43,7 +43,8 @@
     "html-minifier": "^4.0.0",
     "prettier": "^2.2.0",
     "sass": "^1.32.8",
-    "typescript": "^4.1.2"
+    "typescript": "^4.1.2",
+    "typescript-plugin-css-modules": "^3.2.0"
   },
   "homepage": "https://fabiolazzaroni.dev/",
   "license": "UNLICENSED",
