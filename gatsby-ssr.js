@@ -4,7 +4,7 @@ import {
   COLOR_MODE_KEY,
   INITIAL_COLOR_MODE_CSS_PROP,
 } from "./src/utils/constants";
-import {minify} from "html-minifier";
+import {minify} from "html-minifier-terser";
 import {App} from "./src/components/App";
 
 const minifyOptions = {
@@ -28,11 +28,6 @@ function setColorsByTheme() {
   const mql = window.matchMedia("(prefers-color-scheme: dark)");
   const prefersDarkFromMQ = mql.matches;
   const persistedPreference = localStorage.getItem(colorModeKey);
-
-  console.log({
-    prefersDarkFromMQ,
-    persistedPreference,
-  });
 
   let colorMode = "light";
 
