@@ -1,5 +1,6 @@
 import React, {FC} from "react";
-import "./reboot.scss";
+import "../styles/reboot.global.scss";
+import "../styles/styles.global.scss";
 import {ThemeProvider} from "./ThemeContext";
 
 export const App: FC = ({children}) => {

@@ -1,0 +1,44 @@
+@import "../../styles/variables.shared";
+.lab {
+  padding: 1rem;
+  border-radius: 0.5rem;
+  background: var(--color-bgTranslucent)
+    linear-gradient(to right bottom, #ffffff11, #ffffff00);
+  backdrop-filter: blur(3px);
+  box-shadow: 0 1.6px 3.6px 0 rgba(0, 0, 0, 0.132),
+    0 0.3px 0.9px 0 rgba(0, 0, 0, 0.108);
+
+  border: 1px solid var(--color-muted);
+  margin-bottom: 1rem;
+  transition: background-color $darkModeTransitionDuration,
+    border $darkModeTransitionDuration;
+
+  .title {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.25rem;
+  }
+
+  .description {
+    margin-bottom: 0.5rem;
+  }
+
+  .technologiesList {
+    margin-bottom: 0;
+
+    > * {
+      margin-right: 0.5rem;
+    }
+    > *:last-child {
+      margin-right: 0;
+    }
+  }
+
+  :global(.onlyIcon) {
+    z-index: 2;
+  }
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}

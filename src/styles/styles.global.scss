@@ -1,0 +1,58 @@
+@import "./variables.shared";
+
+a {
+  font-weight: 600;
+  color: var(--color-link);
+  text-decoration: none;
+  transition: color $darkModeTransitionDuration;
+
+  &:not(.onlyIcon):not(.stretchedLink) {
+    position: relative;
+  }
+
+  &:not(.onlyIcon):not(.stretchedLink)::after,
+  &.stretchedLink > *::after {
+    content: "";
+    position: absolute;
+    width: 0;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    bottom: 0;
+    height: 1.75px;
+    background: currentColor;
+    transition: width 0.25s;
+  }
+
+  &.onlyIcon {
+    display: inline-block;
+    transition: transform 0.25s;
+  }
+  &.onlyIcon:hover {
+    transform: scale(1.35);
+  }
+
+  &.stretchedLink {
+    > * {
+      position: relative;
+    }
+
+    &::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      z-index: 1;
+    }
+  }
+
+  &:hover {
+    color: var(--color-link);
+    &:not(.onlyIcon):not(.stretchedLink)::after,
+    &.stretchedLink > *::after {
+      width: 100%;
+    }
+  }
+}

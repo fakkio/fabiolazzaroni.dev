@@ -2,8 +2,8 @@ import React, {createContext, FC, useEffect, useMemo, useState} from "react";
 import {COLORS} from "../utils/colors";
 import {COLOR_MODE_KEY, INITIAL_COLOR_MODE_CSS_PROP} from "../utils/constants";
 
-type ColorMode = "light" | "dark";
-interface ThemeContextProps {
+export type ColorMode = "light" | "dark";
+export interface ThemeContextProps {
   colorMode: ColorMode | undefined;
   setColorMode: (value: ColorMode) => void;
 }

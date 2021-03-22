@@ -1,5 +1,5 @@
 import {usePreviousValue} from "beautiful-react-hooks";
-import React, {useContext, useEffect, VFC} from "react";
+import React, {useContext, VFC} from "react";
 import {animated, useSpring} from "react-spring";
 import {ThemeContext} from "./ThemeContext";
 
@@ -48,10 +48,6 @@ export const DarkToggle: VFC = () => {
   const {colorMode, setColorMode} = useContext(ThemeContext);
   // Needed for checking if this is the initial rendering
   const prevColorMode = usePreviousValue(colorMode);
-
-  useEffect(() => {
-    console.log(colorMode);
-  }, [colorMode]);
 
   const {circle, svg, lines, mask} = animationProperties[colorMode ?? "light"];
 

@@ -1,7 +1,7 @@
 module.exports = {
   siteMetadata: {
-    title: `Fabio Lazzaroni personal website`,
-    description: `Personal and professional information about Fabio Lazzaroni`,
+    title: "Fabio Lazzaroni ingegnere informatico",
+    description: "Informazioni personali e professionali su Fabio Lazzaroni",
     author: `Fabio Lazzaroni <lazzaroni@jeflab.it> (http://fabiolazzaroni.dev/)`,
   },
   plugins: [
@@ -15,11 +15,16 @@ module.exports = {
       },
     },
     "gatsby-transformer-sharp",
+
+    // "gatsby-plugin-image",
+    // "gatsby-plugin-sharp",
+    // "gatsby-transformer-sharp",
+
     "gatsby-plugin-sharp",
     {
       resolve: "gatsby-plugin-manifest",
       options: {
-        name: "Fabio Lazzaroni personal website",
+        name: "Fabio Lazzaroni ingegnere informatico",
         short_name: "Fabio Lazzaroni",
         start_url: "/",
         background_color: "#2c3e50",

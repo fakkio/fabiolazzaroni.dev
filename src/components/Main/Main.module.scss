@@ -1,0 +1,14 @@
+.main {
+  composes: container from "../../styles/container.shared.scss";
+  flex: 1 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.justifyCenter {
+  justify-content: center;
+}
+
+.alignCenter {
+  align-items: center;
+}

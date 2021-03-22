@@ -1,0 +1,13 @@
+@import "src/styles/variables.shared";
+
+.icon {
+  display: inline-block;
+  vertical-align: -(3em / 16);
+  height: (17em / 16);
+}
+
+.animateFill {
+  path {
+    transition: fill $darkModeTransitionDuration;
+  }
+}

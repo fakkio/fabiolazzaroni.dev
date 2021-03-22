@@ -1,0 +1,23 @@
+@import "../../styles/variables.shared";
+
+.footer {
+  background-color: var(--color-invertedBackground);
+  color: var(--color-invertedText);
+  flex: 0 0 auto;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  margin-top: 1rem;
+  transition: color $darkModeTransitionDuration,
+    background-color $darkModeTransitionDuration;
+}
+
+.inner {
+  composes: container from "../../styles/container.shared.scss";
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+
+  small {
+    opacity: 0.75;
+  }
+}

@@ -28,7 +28,5 @@ export const ProfilePicture: VFC = () => {
     }
   `);
 
-  console.log("imageBG");
-
   return <GatsbyImage fixed={fixed} alt="Fabio Lazzaroni profile picture" />;
 };

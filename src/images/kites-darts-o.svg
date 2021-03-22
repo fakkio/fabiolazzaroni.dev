@@ -1,9 +1,8 @@
 <svg version="1.1" xmlns="http://www.w3.org/2000/svg" x="0" y="0" viewBox="0 0 1920 1080" xml:space="preserve">
   <style>
-    .kite,.dart{stroke:#00000010;stroke-width:1.5}
+    .kite,.dart{stroke:#00000007;stroke-width:1.5}
     .kite{fill:#34495e10}
     .dart{fill:transparent}
-    .kite:hover,.dart:hover{fill:#c0392b}
   </style>
   <path class="kite" d="M1735.9 662.7l-15.5 11.3-15.6 11.3 15.6 11.3 15.5 11.3 7.4-22.6z"/>
   <path class="dart" d="M1704.8 758.5l31.1 22.6 11.9-36.6-19.2 14zM1747.8 817.6l7.4-22.6 19.2-13.9h-38.5zM1704.8 567l31.1 22.6 11.9-36.6-19.2 14zM1747.8 626.2l7.4-22.6 19.2-14h-38.5z"/>
