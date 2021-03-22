@@ -83,7 +83,7 @@ export const DarkToggle: VFC = () => {
       strokeLinecap="round"
       strokeLinejoin="round"
       stroke="currentColor"
-      onClick={(ev) => {
+      onClick={() => {
         setColorMode(colorMode === "light" ? "dark" : "light");
       }}
       style={{

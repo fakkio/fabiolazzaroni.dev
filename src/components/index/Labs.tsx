@@ -1,9 +1,7 @@
 import React, {VFC} from "react";
-import {useSpring} from "react-spring";
 import {CssLogo} from "../icons/CssLogo";
 import {DockerLogo} from "../icons/DockerLogo";
 import {GatsbyLogo} from "../icons/GatsbyLogo";
-import {GitHubLogo} from "../icons/GitHubLogo";
 import {GraphqlLogo} from "../icons/GraphqlLogo";
 import {HTMLLogo} from "../icons/HTMLLogo";
 import {JavaScriptLogo} from "../icons/JavaScriptLogo";
@@ -12,12 +10,6 @@ import {PostgresLogo} from "../icons/PostgresLogo";
 import {ReactLogo} from "../icons/ReactLogo";
 import {TypescriptLogo} from "../icons/TypescriptLogo";
 import {Lab} from "../Labs/Lab";
-import {
-  lab,
-  title,
-  description,
-  technologiesList,
-} from "../Labs/Lab.module.scss";
 
 const labs = [
   {

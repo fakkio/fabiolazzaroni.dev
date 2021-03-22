@@ -10,7 +10,7 @@ export interface ThemeContextProps {
 
 export const ThemeContext = createContext<ThemeContextProps>({
   colorMode: undefined,
-  setColorMode: (value: ColorMode) => {
+  setColorMode: () => {
     throw new Error("No setColorMode available");
   },
 });
