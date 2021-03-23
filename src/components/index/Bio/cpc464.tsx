@@ -1,7 +1,7 @@
 import React, {SVGProps, useContext, VFC} from "react";
 import {animated, useSpring} from "react-spring";
-import {COLORS} from "../../utils/colors";
-import {ThemeContext} from "../ThemeContext";
+import {COLORS} from "../../../utils/colors";
+import {ThemeContext} from "../../ThemeContext";
 
 interface Cpc464Props extends SVGProps<SVGSVGElement> {}
 

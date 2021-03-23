@@ -1,21 +1,17 @@
 import React, {VFC} from "react";
+import factorioLogo from "../../images/factorio-logo.png";
 import {noWrap} from "../../styles/text.module.scss";
 import {GraphqlLogo} from "../icons/GraphqlLogo";
+import {icon} from "../icons/icon.module.scss";
 import {JefLogo} from "../icons/JefLogo";
 import {NodejsLogo} from "../icons/NodejsLogo";
 import {PostgresLogo} from "../icons/PostgresLogo";
 import {ReactLogo} from "../icons/ReactLogo";
 import {TypescriptLogo} from "../icons/TypescriptLogo";
-import {Amstrad} from "./amstrad";
-import {Cpc464} from "./cpc464";
-import {amstrad} from "./index.module.scss";
-import {useBlinkAmstrad} from "./useBlinkAmstrad";
-import factorioLogo from "../../images/factorio-logo.png";
-import {icon} from "../icons/icon.module.scss";
+import {BlinkingAmstrad} from "./Bio/BlinkingAmstrad";
+import {amstrad} from "./Bio/Bio.module.scss";
 
 export const Bio: VFC = () => {
-  const amstradStyle = useBlinkAmstrad(5000, 15000);
-
   return (
     <>
       <p>
@@ -24,9 +20,8 @@ export const Bio: VFC = () => {
         <a
           href="https://it.wikipedia.org/wiki/Amstrad_CPC_464"
           className={amstrad}
-          style={amstradStyle}
         >
-          <Amstrad /> <Cpc464 />
+          <BlinkingAmstrad />
         </a>
         ), sviluppo per il web dal 2008 (
         <a href="http://jeflab.it/" className={noWrap}>

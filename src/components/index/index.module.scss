@@ -1,21 +1,3 @@
-@import "../../styles/variables.shared";
 .title {
   margin-top: 1rem;
-}
-
-.amstrad {
-  &:hover {
-    color: var(--color-amstradGreen);
-  }
-  text-shadow: 0 0 3px var(--color-amstradGreen);
-
-  svg {
-    height: ((11em) / 16);
-    vertical-align: baseline;
-    overflow: visible;
-
-    path {
-      transition: fill 2s;
-    }
-  }
 }

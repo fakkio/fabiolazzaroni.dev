@@ -54,7 +54,7 @@ export const Labs: VFC = () => {
   return (
     <>
       {labs.map((labProps) => (
-        <Lab {...labProps} />
+        <Lab key={labProps.name} {...labProps} />
       ))}
     </>
   );
