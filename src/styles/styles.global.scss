@@ -14,14 +14,15 @@ a {
   &.stretchedLink > *::after {
     content: "";
     position: absolute;
-    width: 0;
     left: 0;
     right: 0;
     margin: 0 auto;
     bottom: 0;
     height: 1.75px;
     background: currentColor;
-    transition: width 0.25s;
+    transition: opacity 0.25s, transform 0.25s;
+    opacity: 0;
+    transform: scale(0);
   }
 
   &.onlyIcon {
@@ -52,7 +53,8 @@ a {
     color: var(--color-link);
     &:not(.onlyIcon):not(.stretchedLink)::after,
     &.stretchedLink > *::after {
-      width: 100%;
+      opacity: 1;
+      transform: scale(1);
     }
   }
 }

@@ -12,7 +12,7 @@ interface LabProps {
 
 export const Lab: VFC<LabProps> = ({desc, name, repo, technologies, url}) => {
   return (
-    <div key={name} className={lab}>
+    <div className={lab}>
       <h3 className={title}>
         <a href={url} className="stretchedLink">
           <span>{name}</span>
