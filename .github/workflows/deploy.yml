@@ -1,0 +1,64 @@
+name: Deploy
+
+on:
+  push:
+    branches: [ main ]
+
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    name: Build
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: '14.x'
+        
+      - name: Install dependecies
+        run: yarn install --frozen-lockfile
+        
+      - name: Install Gatsby CLI
+        run: npm install -g gatsby-cli
+      
+      - name: Build
+        run: gatsby build
+      
+      - name: Verify build
+        run: ls -la public
+        
+      - name: Upload public dir
+        uses: actions/upload-artifact@v2
+        with:
+          name: public
+          path: public
+        
+  deploy:
+    runs-on: ubuntu-latest
+    name: Deploy
+    needs: build
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Download public dir
+        uses: actions/download-artifact@v2
+        with:
+          name: public
+          path: public
+        
+      - name: Upload ftp
+        uses: sebastianpopp/ftp-action@releases/v2
+        with:
+          host: ${{ secrets.FTP_HOST }}
+          user: ${{ secrets.FTP_USER }}
+          password: ${{ secrets.FTP_PASS }}
+          localDir: "public"
+          remoteDir: "www"
+          options: "--delete"
