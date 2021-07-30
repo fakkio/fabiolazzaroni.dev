@@ -10,6 +10,7 @@
     "beautiful-react-hooks": "^0.35.0",
     "classnames": "^2.2.6",
     "gatsby": "^3.1.0",
+    "gatsby-plugin-htaccess": "^1.4.0",
     "gatsby-plugin-image": "^1.1.1",
     "gatsby-plugin-manifest": "^3.1.0",
     "gatsby-plugin-offline": "^4.1.0",

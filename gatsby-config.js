@@ -31,7 +31,14 @@ module.exports = {
       },
     },
     "gatsby-plugin-react-axe",
-    // "gatsby-plugin-offline",
+    "gatsby-plugin-offline",
     "gatsby-plugin-eslint",
+    {
+      resolve: "gatsby-plugin-htaccess",
+      options: {
+        https: true,
+        ErrorDocument: "ErrorDocument 404 /404.html",
+      },
+    },
   ],
 };
