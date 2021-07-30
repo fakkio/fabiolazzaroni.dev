@@ -31,7 +31,7 @@ module.exports = {
       },
     },
     "gatsby-plugin-react-axe",
-    "gatsby-plugin-offline",
+    // "gatsby-plugin-offline",
     "gatsby-plugin-eslint",
     {
       resolve: "gatsby-plugin-htaccess",
