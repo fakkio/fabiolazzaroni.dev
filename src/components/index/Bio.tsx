@@ -67,7 +67,7 @@ export const Bio: VFC = () => {
           <span role="img" aria-label="Gatto">
             🐱
           </span>{" "}
-          Priscilla
+          Enzo
         </span>
         ,{" "}
         <span className={noWrap}>
@@ -89,7 +89,8 @@ export const Bio: VFC = () => {
         Adoro cucinare, friggere, impastare, grigliare e ultimamente mi sono
         appassionato alla cottura sous-vide.
         <br />
-        Mi piacciono i videogiochi, soprattutto RPG, strategici e gestionali{" "}
+        Mi piacciono i videogiochi, soprattutto RPG, strategici e gestionali
+        (sto guardando te,{" "}
         <a
           href="https://store.steampowered.com/app/427520/Factorio/"
           className={noWrap}
@@ -97,6 +98,7 @@ export const Bio: VFC = () => {
           <img src={factorioLogo} alt="factorio logo" className={icon} />{" "}
           factorio
         </a>
+        )
       </p>
     </>
   );
