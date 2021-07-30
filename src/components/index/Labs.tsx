@@ -16,7 +16,7 @@ const labs = [
     url: "https://lireddit.lazzaroni.io/",
     repo: "https://github.com/Fakkio/lireddit",
     name: "Lireddit",
-    desc: "un limitato clone di un form tipo reddit",
+    desc: "un limitato clone di un forum tipo reddit",
     technologies: [
       <ReactLogo key="ReactJs" aria-label="ReactJs" />,
       <TypescriptLogo key="TypeScript" aria-label="TypeScript" />,
