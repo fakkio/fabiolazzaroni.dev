@@ -7,7 +7,7 @@
     "url": "https://github.com/Fakkio/fabiolazzaroni.dev/issues"
   },
   "dependencies": {
-    "beautiful-react-hooks": "^0.31.0",
+    "beautiful-react-hooks": "^0.35.0",
     "classnames": "^2.2.6",
     "gatsby": "^3.1.0",
     "gatsby-plugin-image": "^1.1.1",
@@ -22,7 +22,7 @@
     "react": "^17.0.0",
     "react-dom": "^17.0.0",
     "react-helmet": "^6.1.0",
-    "react-spring": "^8.0.27"
+    "react-spring": "^9.0.0"
   },
   "devDependencies": {
     "@types/classnames": "^2.2.11",
@@ -37,10 +37,9 @@
     "eslint-plugin-jsx-a11y": "^6.4.1",
     "eslint-plugin-react": "^7.22.0",
     "eslint-plugin-react-hooks": "^4.2.0",
-    "eslint-webpack-plugin": "^2.4.3",
+    "eslint-webpack-plugin": "^3.0.1",
     "gatsby-plugin-eslint": "^3.0.0",
     "gatsby-plugin-sass": "^4.1.0",
-    "gatsby-plugin-scss-typescript": "^4.0.13",
     "prettier": "^2.2.0",
     "sass": "^1.32.8",
     "typescript": "^4.1.2",
