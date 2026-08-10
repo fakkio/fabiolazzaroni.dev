@@ -1,2 +1,6 @@
 # Ignore the .idea directory
 /.idea/
+
+# Claude specific files
+/.claude/
+/CLAUDE.md
