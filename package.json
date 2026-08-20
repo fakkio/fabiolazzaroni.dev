@@ -1,0 +1,15 @@
+{
+  "name": "fabiolazzaroni.dev",
+  "version": "0.0.0",
+  "description": "Fabio Lazzaroni personal website",
+  "private": true,
+  "type": "module",
+  "license": "UNLICENSED",
+  "scripts": {
+    "visual": "playwright test",
+    "visual:baseline": "playwright test --update-snapshots"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.56.0"
+  }
+}

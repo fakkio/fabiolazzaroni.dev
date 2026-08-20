@@ -4,3 +4,13 @@
 # Claude specific files
 /.claude/
 /CLAUDE.md
+
+# Node
+/node_modules/
+
+# Playwright
+/test-results/
+/playwright-report/
+/blob-report/
+/visual/**/*-actual.png
+/visual/**/*-diff.png
