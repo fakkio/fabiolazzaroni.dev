@@ -1,0 +1,9 @@
+dist
+.astro
+package-lock.json
+
+# Agent tooling and docs, not site source
+.agents
+docs
+skills-lock.json
+AGENTS.md
