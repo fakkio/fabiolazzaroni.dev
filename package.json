@@ -6,8 +6,9 @@
   "type": "module",
   "license": "UNLICENSED",
   "scripts": {
-    "visual": "playwright test",
-    "visual:baseline": "playwright test --update-snapshots"
+    "visual": "playwright test --project=live",
+    "visual:local": "playwright test --project=local",
+    "visual:baseline": "playwright test --project=live --update-snapshots"
   },
   "devDependencies": {
     "@playwright/test": "^1.56.0"

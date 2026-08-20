@@ -7,10 +7,16 @@ The instrument the Gatsby-to-Astro port is judged with: a Playwright capture of
 ## Run it
 
 ```bash
-npm run visual                              # diff the live site against the baselines
-SITE_URL=http://localhost:4321 npm run visual   # diff the Astro build against them
-npm run visual:baseline                     # re-capture (only when a delta is intentional)
+npm run visual           # diff the live Gatsby site against the baselines
+npm run visual:local     # diff a local Astro build against the same baselines
+npm run visual:baseline  # re-capture from the live site (only for an intentional delta)
 ```
+
+The target is a Playwright project (`--project=live` / `--project=local`) rather
+than an environment variable, so the commands read the same on PowerShell and on
+a POSIX shell. `local` points at Astro's default `http://localhost:4321`; set
+`LOCAL_URL` to override the port. Nothing here boots the server -- that is a
+`webServer` entry a later ticket can add once there is something to boot.
 
 `npx playwright show-report` or the `test-results/` folder holds the diff images
 when a run fails.
@@ -19,7 +25,8 @@ when a run fails.
 
 Eight full-page screenshots: `index` and `404`, each in `light` and `dark`, each
 at a desktop (1280x800) and a mobile (390x844) viewport, named
-`baseline/<page>-<viewport>-<theme>.png`.
+`baseline/<page>-<viewport>-<theme>.png`. Both projects are judged against that
+one set -- the snapshot path carries no project or platform segment.
 
 The theme is not left to chance: the site's blocking script reads
 `localStorage["color-mode"]` first and `prefers-color-scheme` second, so the
@@ -52,4 +59,4 @@ serves the 404 document at any missing path.
   absorb antialiasing, not layout or colour drift.
 - The footer prints the current year, so a baseline captured in one year and
   diffed in the next fails on the footer. Re-capture if that day comes.
-- `npm run visual` with no `SITE_URL` hits the live site over the network.
+- `npm run visual` hits the live site over the network.

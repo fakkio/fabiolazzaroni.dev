@@ -3,13 +3,18 @@ import {defineConfig, devices} from "@playwright/test";
 /**
  * Visual baseline harness.
  *
- * `SITE_URL` points the whole suite at the site under test. It defaults to the
- * live Gatsby site, which is what the committed baselines were captured from;
- * point it at the Astro dev/preview server to diff the port against them:
+ * Two projects over one set of baselines: `live` shoots the Gatsby site the
+ * baselines were captured from, `local` shoots the Astro build being ported.
+ * Selecting the target with `--project` rather than an environment variable
+ * keeps the commands identical on PowerShell and on a POSIX shell.
  *
- *   SITE_URL=http://localhost:4321 npm run visual
+ *   npm run visual          # live
+ *   npm run visual:local    # local
+ *
+ * `LOCAL_URL` overrides the local port when it is not Astro's default.
  */
-const SITE_URL = process.env.SITE_URL ?? "https://fabiolazzaroni.dev";
+const LIVE_URL = "https://fabiolazzaroni.dev";
+const LOCAL_URL = process.env.LOCAL_URL ?? "http://localhost:4321";
 
 export default defineConfig({
   testDir: "./visual",
@@ -18,8 +23,8 @@ export default defineConfig({
   retries: 0,
   reporter: [["list"]],
   // One flat folder of baselines, named by page/viewport/theme, with no project
-  // or platform segment: the baselines are Chromium-on-Windows artefacts and a
-  // second platform would silently fork them instead of failing loudly.
+  // or platform segment: both projects are judged against the same PNGs, and a
+  // second platform should fail loudly rather than silently fork the set.
   snapshotPathTemplate: "{testDir}/baseline/{arg}{ext}",
   expect: {
     toHaveScreenshot: {
@@ -33,8 +38,11 @@ export default defineConfig({
   },
   use: {
     ...devices["Desktop Chrome"],
-    baseURL: SITE_URL,
     deviceScaleFactor: 1,
     screenshot: "only-on-failure",
   },
+  projects: [
+    {name: "live", use: {baseURL: LIVE_URL}},
+    {name: "local", use: {baseURL: LOCAL_URL}},
+  ],
 });

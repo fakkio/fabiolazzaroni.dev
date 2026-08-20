@@ -1,6 +1,6 @@
 import {expect, test} from "@playwright/test";
 
-const PAGES = [
+const TARGETS = [
   {name: "index", path: "/"},
   // Any missing path serves the 404 page (shared hosting, generated .htaccess).
   {name: "404", path: "/this-page-does-not-exist/"},
@@ -33,27 +33,27 @@ for (const viewport of VIEWPORTS) {
         colorScheme: theme,
       });
 
-      for (const page of PAGES) {
-        test(`${page.name}`, async ({page: browserPage}) => {
-          await browserPage.addInitScript(
+      for (const target of TARGETS) {
+        test(`${target.name}`, async ({page}) => {
+          await page.addInitScript(
             ([key, value]) => window.localStorage.setItem(key, value),
             [COLOR_MODE_KEY, theme]
           );
 
-          await browserPage.goto(page.path, {waitUntil: "networkidle"});
-          await browserPage.evaluate(() => document.fonts.ready);
-          await browserPage.addStyleTag({content: FREEZE_BLINKING_AMSTRAD});
+          await page.goto(target.path, {waitUntil: "networkidle"});
+          await page.evaluate(() => document.fonts.ready);
+          await page.addStyleTag({content: FREEZE_BLINKING_AMSTRAD});
           // The Amstrad gradient and the dark-mode toggle are react-spring
           // animations that settle shortly after mount; let them.
-          await browserPage.waitForTimeout(1000);
+          await page.waitForTimeout(1000);
 
-          await expect(browserPage).toHaveScreenshot(
-            `${page.name}-${viewport.name}-${theme}.png`,
+          await expect(page).toHaveScreenshot(
+            `${target.name}-${viewport.name}-${theme}.png`,
             {
               fullPage: true,
               // An animated GIF: no frame of it is reproducible, so it is
               // painted over. Its box still takes part in the layout diff.
-              mask: [browserPage.locator('img[alt="John Travolta confuso"]')],
+              mask: [page.locator('img[alt="John Travolta confuso"]')],
             }
           );
         });
