@@ -6,7 +6,7 @@ Conventional Commits shape, with the type replaced by a [gitmoji](https://gitmoj
 
 ### Language
 
-Commit messages and everything under `docs/` are written in English, regardless of the language used in conversation.
+Everything written down is in English: commit messages, code (identifiers, comments, strings not user-facing), GitHub issues and their comments, and everything under `docs/`. Italian is for conversation with the user only.
 
 ### Branching
 
