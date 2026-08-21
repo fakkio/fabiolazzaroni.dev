@@ -29,11 +29,15 @@ jobs:
       - name: Verify build
         run: ls -la dist
 
+      # include-hidden-files defaults to false — without it, .htaccess never
+      # survives the hop into the artifact, before lftp even gets a chance to
+      # upload it.
       - name: Upload dist dir
         uses: actions/upload-artifact@v7
         with:
           name: dist
           path: dist
+          include-hidden-files: true
 
   deploy:
     runs-on: ubuntu-latest
