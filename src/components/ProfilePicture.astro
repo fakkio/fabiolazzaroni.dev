@@ -1,0 +1,16 @@
+---
+// Intentional delta (map #1): no tracedSVG placeholder, no fade-in — loads
+// eager since astro:assets has no blur/LQIP equivalent and the old
+// placeholder was measurably heavier than the real image.
+import {Image} from "astro:assets";
+import fabio from "../assets/fabio.jpg";
+---
+
+<Image
+  src={fabio}
+  alt="Fabio Lazzaroni profile picture"
+  width={200}
+  height={200}
+  densities={[1, 2]}
+  priority
+/>

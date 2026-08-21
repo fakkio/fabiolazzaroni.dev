@@ -1,0 +1,52 @@
+---
+// Random-interval blink, ported verbatim from useBlinkAmstrad/useRandomInterval:
+// every 5-15s the span flashes --color-amstradGreen twice then reverts. It
+// writes a plain inline style rather than toggling a class — visual/site.spec.js
+// relies on exactly that to freeze it for baseline capture (an author
+// `!important` rule outranks a plain inline style, but not a class).
+import Amstrad from "./icons/Amstrad.astro";
+import Cpc464 from "./icons/Cpc464.astro";
+---
+
+<span data-blinking-amstrad><Amstrad /> <Cpc464 /></span>
+
+<script>
+  const MIN_DELAY = 5000;
+  const MAX_DELAY = 15000;
+
+  const random = (min: number, max: number) =>
+    Math.floor(Math.random() * (max - min)) + min;
+
+  const span = document.querySelector<HTMLSpanElement>(
+    "[data-blinking-amstrad]",
+  );
+
+  if (span) {
+    const blink = () => {
+      setTimeout(() => {
+        span.style.color = "var(--color-amstradGreen)";
+      }, 1);
+      setTimeout(() => {
+        span.style.color = "";
+      }, 150);
+      setTimeout(() => {
+        span.style.color = "var(--color-amstradGreen)";
+      }, 700);
+      setTimeout(() => {
+        span.style.color = "";
+      }, 850);
+    };
+
+    const tick = () => {
+      setTimeout(
+        () => {
+          blink();
+          tick();
+        },
+        random(MIN_DELAY, MAX_DELAY),
+      );
+    };
+
+    tick();
+  }
+</script>

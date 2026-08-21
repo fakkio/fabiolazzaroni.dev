@@ -1,15 +1,21 @@
 ---
-
+import Bio from "../components/Bio.astro";
+import Labs from "../components/Labs.astro";
+import ProfilePicture from "../components/ProfilePicture.astro";
+import WavingHand from "../components/WavingHand.astro";
+import Layout from "../layouts/Layout.astro";
 ---
 
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" />
-    <meta name="generator" content={Astro.generator} />
-    <title>fabiolazzaroni.dev</title>
-  </head>
-  <body>
-    <h1>Scaffold placeholder — replaced page by page as the port lands.</h1>
-  </body>
-</html>
+<Layout>
+  <ProfilePicture />
+  <h1 class="title">Ciao! Sono Fabio <WavingHand /></h1>
+  <Bio />
+  <h2>.labs()</h2>
+  <Labs />
+</Layout>
+
+<style>
+  .title {
+    margin-top: 1rem;
+  }
+</style>
