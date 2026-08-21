@@ -1,0 +1,80 @@
+---
+import Footer from "../components/Footer.astro";
+import Header from "../components/Header.astro";
+import Main from "../components/Main.astro";
+import "../styles/reset.css";
+import "../styles/base.css";
+import "../styles/theme.css";
+import "../styles/global.css";
+import {COLOR_MODE_KEY, SITE_METADATA} from "../utils/constants";
+
+interface Props {
+  title?: string;
+  description?: string;
+  centered?: boolean;
+  vCentered?: boolean;
+}
+
+const {
+  title,
+  description = SITE_METADATA.description,
+  centered = false,
+  vCentered = false,
+} = Astro.props;
+
+const pageTitle = title
+  ? `${title} | ${SITE_METADATA.title}`
+  : SITE_METADATA.title;
+---
+
+<html lang="it">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{pageTitle}</title>
+    <meta name="description" content={description} />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:creator" content={SITE_METADATA.author} />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={description} />
+
+    <script is:inline define:vars={{COLOR_MODE_KEY}}>
+      const theme =
+        localStorage.getItem(COLOR_MODE_KEY) ??
+        (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+      document.documentElement.dataset.theme = theme;
+    </script>
+  </head>
+  <body>
+    <div class="layout">
+      <Header />
+      <Main centered={centered} vCentered={vCentered}>
+        <slot />
+      </Main>
+      <Footer />
+    </div>
+  </body>
+</html>
+
+<style>
+  body {
+    background: url("../assets/kites-darts-o.svg") no-repeat fixed top left;
+    background-color: var(--color-background);
+    background-size: cover;
+    color: var(--color-text);
+    transition:
+      color var(--theme-transition-duration),
+      background-color var(--theme-transition-duration);
+  }
+
+  .layout {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    isolation: isolate;
+  }
+</style>
