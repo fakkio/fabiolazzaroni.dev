@@ -1,0 +1,103 @@
+---
+// CSS-driven dark-mode toggle: winner of the #12 prototype bake-off (a CSS
+// transition) over a hand-rolled spring integrator and a Web Animations API
+// version, both matching react-spring's exact {mass: 4, tension: 250,
+// friction: 35} config. All visual state below reacts to the ancestor
+// data-theme attribute (written by Layout.astro's blocking script, per #7)
+// purely through the CSS cascade — cx/cy/r are SVG geometry properties, so a
+// CSS override on them transitions like any other property. The click
+// handler only ever flips that attribute and persists it; there is no
+// per-frame JS driving the animation.
+---
+
+<svg
+  class="toggle"
+  data-dark-toggle
+  xmlns="http://www.w3.org/2000/svg"
+  width="32"
+  height="32"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  stroke="currentColor"
+>
+  <mask id="darkToggleMask">
+    <rect x="0" y="0" width="100%" height="100%" fill="white" />
+    <circle class="maskCircle" cx="100%" cy="0%" r="9" fill="black" />
+  </mask>
+
+  <circle
+    class="centerCircle"
+    cx="12"
+    cy="12"
+    r="5"
+    mask="url(#darkToggleMask)"
+    fill="currentColor"
+  />
+  <g class="rays" stroke="currentColor">
+    <line x1="12" y1="1" x2="12" y2="3"></line>
+    <line x1="12" y1="21" x2="12" y2="23"></line>
+    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+    <line x1="1" y1="12" x2="3" y2="12"></line>
+    <line x1="21" y1="12" x2="23" y2="12"></line>
+    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+  </g>
+</svg>
+
+<style>
+  .toggle {
+    cursor: pointer;
+    color: #e67e22;
+    transform: rotate(90deg);
+    transition:
+      transform 600ms cubic-bezier(0.34, 1.56, 0.64, 1),
+      color 600ms cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  .centerCircle {
+    transition: r 600ms cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  .maskCircle {
+    transition:
+      cx 600ms cubic-bezier(0.34, 1.56, 0.64, 1),
+      cy 600ms cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  .rays {
+    transition: opacity 600ms cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  :global([data-theme="dark"]) .toggle {
+    color: #ecf0f1;
+    transform: rotate(40deg);
+  }
+
+  :global([data-theme="dark"]) .centerCircle {
+    r: 9;
+  }
+
+  :global([data-theme="dark"]) .maskCircle {
+    cx: 50%;
+    cy: 23%;
+  }
+
+  :global([data-theme="dark"]) .rays {
+    opacity: 0;
+  }
+</style>
+
+<script>
+  import {COLOR_MODE_KEY} from "../utils/constants";
+
+  document.querySelector("[data-dark-toggle]")?.addEventListener("click", () => {
+    const root = document.documentElement;
+    const next = root.dataset.theme === "dark" ? "light" : "dark";
+    root.dataset.theme = next;
+    localStorage.setItem(COLOR_MODE_KEY, next);
+  });
+</script>
