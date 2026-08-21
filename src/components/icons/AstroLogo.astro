@@ -1,14 +1,14 @@
 ---
-// The Astro "Built with" mark, per #13. Unlike the other 13 logos (#8), this one
-// cannot take its fill from `currentColor` — Astro's press rules forbid recolouring
-// the logo, so the fill is restricted to the two official published values plus the
-// official gradient logomark, switched by which surface the instance sits on.
+// Unlike the other logos, this one can't take its fill from `currentColor` —
+// Astro's press rules forbid recolouring the logo, so the fill is restricted
+// to the two official published values plus the official gradient logomark,
+// switched by which surface the instance sits on.
 //
-// `inverted` mirrors GitHubLogo's existing prop (#8): unset for an instance that
-// follows the page's theme (the Labs card), set for one that sits on the footer's
-// inverted background. Combined with `[data-theme="dark"]` this reproduces all four
-// backdrop combinations research on #4 measured, using only officially published fills:
-// solid #17191E on a light surface, the official gradient logomark on a dark one.
+// `inverted` unset follows the page's theme; set, it sits on an inverted
+// background (like the footer). Combined with `[data-theme="dark"]` this
+// reproduces all four backdrop combinations using only officially published
+// fills: solid #17191E on a light surface, the official gradient logomark on
+// a dark one.
 interface Props {
   inverted?: boolean;
   id?: string;

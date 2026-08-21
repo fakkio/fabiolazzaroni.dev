@@ -1,8 +1,8 @@
 /*
   Palette: light defaults on :root, dark overrides under [data-theme="dark"].
-  The blocking theme script (Layout.astro, per #7) resolves the effective mode
-  and writes data-theme before paint; the prefers-color-scheme block below is
-  a no-JS fallback only, and never overrides an explicit data-theme.
+  The blocking theme script resolves the effective mode and writes data-theme
+  before paint; the prefers-color-scheme block below is a no-JS fallback only,
+  and never overrides an explicit data-theme.
 */
 
 :root {

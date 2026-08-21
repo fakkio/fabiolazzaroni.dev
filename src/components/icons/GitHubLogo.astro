@@ -1,7 +1,6 @@
 ---
-// Theme-reactive fill via a per-icon custom property, per #8. `inverted` (used
-// once, on the footer's icon) becomes a `data-inverted` attribute that flips
-// which side of the light/dark pair applies — mirrors AstroLogo (#13).
+// `inverted` becomes a `data-inverted` attribute that flips which side of the
+// light/dark fill pair applies.
 import Icon from "./Icon.astro";
 
 interface Props extends astroHTML.JSX.SVGAttributes {

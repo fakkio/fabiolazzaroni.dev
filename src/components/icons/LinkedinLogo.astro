@@ -1,7 +1,6 @@
 ---
-// Theme-reactive fill via per-icon custom properties, per #8. The icon glyph's
-// light value reuses --color-invertedBackground (matches today's behaviour);
-// its dark value is a literal white, not the token, same as the source.
+// The icon glyph's light value reuses --color-invertedBackground; its dark
+// value is a literal white, not the token.
 import Icon from "./Icon.astro";
 
 type Props = astroHTML.JSX.SVGAttributes;

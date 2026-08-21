@@ -1,8 +1,8 @@
 ---
-// `id` replaces the source's `useRef(Math.random())`: Astro components have no
-// hooks and no hydration to guard a random value against reuse, so the gradient
-// and clip-path ids are namespaced by a caller-supplied key instead (per #8) —
-// Node's logo renders twice on the index page.
+// Astro components have no hooks and no hydration to guard a random value
+// against reuse, so the gradient and clip-path ids are namespaced by a
+// caller-supplied key instead — needed wherever the logo renders more than
+// once on the same page.
 import Icon from "./Icon.astro";
 
 interface Props extends astroHTML.JSX.SVGAttributes {

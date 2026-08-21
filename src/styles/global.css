@@ -1,8 +1,7 @@
 /*
-  .container replaces the old `composes` from container.shared.scss (per #6).
-  The link contract and .animateFill stay global for the same reason the
-  Sass version was global: hand-written anchors and the three theme-reactive
-  icons need the default without opting in per component.
+  The link contract and .animateFill stay global because hand-written anchors
+  and the theme-reactive icons need the default without opting in per
+  component.
 */
 
 .container {
