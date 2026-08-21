@@ -7,7 +7,12 @@ interface Props {
 const {centered = false, vCentered = false} = Astro.props;
 ---
 
-<main class:list={["main", {alignCenter: centered, justifyCenter: vCentered}]}>
+<main
+  class:list={[
+    "main container",
+    {alignCenter: centered, justifyCenter: vCentered},
+  ]}
+>
   <slot />
 </main>
 
