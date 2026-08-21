@@ -1,0 +1,81 @@
+---
+import AstroLogo from "./icons/AstroLogo.astro";
+import GitHubLogo from "./icons/GitHubLogo.astro";
+import LinkedinLogo from "./icons/LinkedinLogo.astro";
+
+const year = new Date().getFullYear();
+---
+
+<footer class="footer">
+  <div class="inner container">
+    <span>
+      2014 - {year} | Built with{" "}
+      <span role="img" aria-label="Passione" class="beat">❤</span>, <AstroLogo
+        inverted
+        id="footer"
+        aria-label="Astro"
+      /> and{" "}
+      <span role="img" aria-label="Caffè">☕</span>
+    </span>
+    <span>
+      P.IVA: 03963600162 -{" "}
+      <a href="https://github.com/Fakkio" class="onlyIcon">
+        <GitHubLogo inverted aria-label="My GitHub profile" />
+      </a>{" "}
+      <a href="https://www.linkedin.com/in/fabiolazzaroni/" class="onlyIcon">
+        <LinkedinLogo aria-label="My Linkedin profile" />
+      </a>{" "}
+      <a href="mailto:lazzaroni@jeflab.it" class="onlyIcon">
+        <span role="img" aria-label="email">✉️</span>
+      </a>
+    </span>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    background-color: var(--color-invertedBackground);
+    color: var(--color-invertedText);
+    flex: 0 0 auto;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    margin-top: 1rem;
+    transition:
+      color var(--theme-transition-duration),
+      background-color var(--theme-transition-duration);
+  }
+
+  .inner {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+
+  .beat {
+    display: inline-block;
+    animation: beat 10s infinite;
+    animation-delay: 7.5s;
+    will-change: transform;
+  }
+
+  @keyframes beat {
+    0% {
+      transform: scale(1);
+    }
+    2% {
+      transform: scale(1.25);
+    }
+    4% {
+      transform: scale(1);
+    }
+    6% {
+      transform: scale(1.2);
+    }
+    8% {
+      transform: scale(1);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+</style>

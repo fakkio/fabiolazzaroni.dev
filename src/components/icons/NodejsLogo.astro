@@ -1,0 +1,91 @@
+---
+// Astro components have no hooks and no hydration to guard a random value
+// against reuse, so the gradient and clip-path ids are namespaced by a
+// caller-supplied key instead — needed wherever the logo renders more than
+// once on the same page.
+import Icon from "./Icon.astro";
+
+interface Props extends astroHTML.JSX.SVGAttributes {
+  id: string;
+}
+
+const {id, ...rest} = Astro.props;
+---
+
+<Icon viewBox="0 0 28.113 32" {...rest}>
+  <defs>
+    <linearGradient
+      id={`node-gradient-1-${id}`}
+      x1="278.754"
+      y1="192.087"
+      x2="279.111"
+      y2="192.087"
+      gradientTransform="scale(-115.30647 115.30647) rotate(63.886 293.336 -127.673)"
+      gradientUnits="userSpaceOnUse"
+    >
+      <stop offset=".3" stop-color="#3e863d"></stop>
+      <stop offset=".5" stop-color="#55934f"></stop>
+      <stop offset=".8" stop-color="#5aad45"></stop>
+    </linearGradient>
+    <linearGradient
+      id={`node-gradient-2-${id}`}
+      x1="277.773"
+      y1="200.005"
+      x2="278.005"
+      y2="200.005"
+      gradientTransform="scale(177.0637 -177.0637) rotate(36.46 442.745 -321.78)"
+      gradientUnits="userSpaceOnUse"
+    >
+      <stop offset=".57" stop-color="#3e863d"></stop>
+      <stop offset=".72" stop-color="#619857"></stop>
+      <stop offset="1" stop-color="#76ac64"></stop>
+    </linearGradient>
+    <linearGradient
+      id={`node-gradient-3-${id}`}
+      x1="275.682"
+      y1="199.336"
+      x2="275.892"
+      y2="199.336"
+      gradientTransform="matrix(129.8891 0 0 -129.8891 -35807.318 25907.596)"
+      gradientUnits="userSpaceOnUse"
+    >
+      <stop offset=".16" stop-color="#6bbf47"></stop>
+      <stop offset=".38" stop-color="#79b461"></stop>
+      <stop offset=".47" stop-color="#75ac64"></stop>
+      <stop offset=".7" stop-color="#659e5a"></stop>
+      <stop offset=".9" stop-color="#3e863d"></stop>
+    </linearGradient>
+    <clipPath id={`node-clip-1-${id}`}>
+      <path
+        fill="none"
+        d="M13.3.202L.758 7.442A1.514 1.514 0 000 8.752v14.488a1.513 1.513 0 00.758 1.312L13.3 31.797a1.518 1.518 0 001.515 0l12.54-7.244a1.517 1.517 0 00.757-1.312V8.753a1.514 1.514 0 00-.76-1.312L14.816.202a1.525 1.525 0 00-1.519 0"
+      ></path>
+    </clipPath>
+    <clipPath id={`node-clip-2-${id}`}>
+      <path
+        fill="none"
+        d="M.31 24.161a1.518 1.518 0 00.447.392l10.759 6.214 1.792 1.03a1.52 1.52 0 00.874.198 1.549 1.549 0 00.297-.054L27.707 7.72a1.5 1.5 0 00-.353-.28l-8.212-4.743-4.34-2.497a1.583 1.583 0 00-.394-.158z"
+      ></path>
+    </clipPath>
+    <clipPath id={`node-clip-3-${id}`}>
+      <path
+        fill="none"
+        d="M13.906.008a1.53 1.53 0 00-.606.194L.794 7.421 14.28 31.983a1.504 1.504 0 00.538-.186l12.542-7.244a1.52 1.52 0 00.732-1.035L14.345.033a1.575 1.575 0 00-.307-.03c-.041 0-.083.002-.125.006"
+      ></path>
+    </clipPath>
+  </defs>
+  <g clip-path={`url(#node-clip-1-${id})`}>
+    <path
+      d="M40.787 6.212L5.446-11.11l-18.12 36.965 35.34 17.324z"
+      fill={`url(#node-gradient-1-${id})`}></path>
+  </g>
+  <g clip-path={`url(#node-clip-2-${id})`}>
+    <path
+      d="M-14.97 11.336L9.986 45.11l33.002-24.383-24.955-33.773z"
+      fill={`url(#node-gradient-2-${id})`}></path>
+  </g>
+  <g clip-path={`url(#node-clip-3-${id})`}>
+    <path d="M.794.003v31.98h27.293V.004z" fill={`url(#node-gradient-3-${id})`}
+    ></path>
+  </g>
+</Icon>

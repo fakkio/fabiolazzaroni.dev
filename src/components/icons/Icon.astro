@@ -1,0 +1,24 @@
+---
+type Props = astroHTML.JSX.SVGAttributes;
+
+const {class: className, ...rest} = Astro.props;
+---
+
+<svg
+  role="img"
+  height="17"
+  preserveAspectRatio="xMidYMid meet"
+  fill="currentColor"
+  class:list={["icon", className]}
+  {...rest}
+>
+  <slot />
+</svg>
+
+<style>
+  .icon {
+    display: inline-block;
+    vertical-align: -0.1875em;
+    height: 1.0625em;
+  }
+</style>

@@ -1,0 +1,24 @@
+---
+import LeftArrow from "../components/icons/LeftArrow.astro";
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="404: Pagina non trovata" centered vCentered>
+  <h1>404: Pagina non trovata</h1>
+  <img
+    src="/confused-john.gif"
+    alt="John Travolta confuso"
+    class="image"
+    height={(490 / 10) * 4}
+    width={(476 / 10) * 4}
+  />
+  <a href="/"><LeftArrow /> Torna alla pagina principale</a>
+</Layout>
+
+<style>
+  .image {
+    height: calc((490px / 10) * 4);
+    width: calc((476px / 10) * 4);
+    margin-bottom: 1rem;
+  }
+</style>

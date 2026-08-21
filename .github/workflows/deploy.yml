@@ -1,0 +1,66 @@
+name: Deploy
+
+on:
+  push:
+    branches: [main]
+
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    name: Build
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v7
+
+      - name: Install Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version-file: package.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      - name: Verify build
+        run: ls -la dist
+
+      # include-hidden-files defaults to false — without it, .htaccess never
+      # survives the hop into the artifact, before lftp even gets a chance to
+      # upload it.
+      - name: Upload dist dir
+        uses: actions/upload-artifact@v7
+        with:
+          name: dist
+          path: dist
+          include-hidden-files: true
+
+  deploy:
+    runs-on: ubuntu-latest
+    name: Deploy
+    needs: build
+
+    steps:
+      - name: Download dist dir
+        uses: actions/download-artifact@v8
+        with:
+          name: dist
+          path: dist
+
+      - name: Install lftp
+        run: sudo apt-get update && sudo apt-get install -y lftp
+
+      # sebastianpopp/ftp-action doesn't expose a way to set ftp:list-options,
+      # and the host hides dotfiles from LIST by default — without -a, lftp
+      # never sees .htaccess locally-vs-remote and silently skips it.
+      - name: Upload via FTP
+        env:
+          FTP_HOST: ${{ secrets.FTP_HOST }}
+          FTP_USER: ${{ secrets.FTP_USER }}
+          FTP_PASS: ${{ secrets.FTP_PASS }}
+        run: |
+          lftp "$FTP_HOST" -u "$FTP_USER,$FTP_PASS" -e "set ftp:list-options -a; set ftp:ssl-force false; set ssl:verify-certificate false; mirror --reverse --continue --dereference --delete -x ^\.git/$ dist www; quit"
