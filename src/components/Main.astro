@@ -1,0 +1,33 @@
+---
+interface Props {
+  centered?: boolean;
+  vCentered?: boolean;
+}
+
+const {centered = false, vCentered = false} = Astro.props;
+---
+
+<main
+  class:list={[
+    "main container",
+    {alignCenter: centered, justifyCenter: vCentered},
+  ]}
+>
+  <slot />
+</main>
+
+<style>
+  .main {
+    flex: 1 0 auto;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .alignCenter {
+    align-items: center;
+  }
+
+  .justifyCenter {
+    justify-content: center;
+  }
+</style>

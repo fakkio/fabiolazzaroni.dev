@@ -1,0 +1,97 @@
+---
+import factorioLogo from "../assets/factorio-logo.png";
+import BlinkingAmstrad from "./BlinkingAmstrad.astro";
+import GraphqlLogo from "./icons/GraphqlLogo.astro";
+import JefLogo from "./icons/JefLogo.astro";
+import NodejsLogo from "./icons/NodejsLogo.astro";
+import PostgresLogo from "./icons/PostgresLogo.astro";
+import ReactLogo from "./icons/ReactLogo.astro";
+import TypescriptLogo from "./icons/TypescriptLogo.astro";
+---
+
+<p>
+  Sono un ingegnere informatico che ha fatto della sua passione il suo lavoro.
+  Parlo ai computer da quando avevo 10 anni (grazie ad un{" "}
+  <a href="https://it.wikipedia.org/wiki/Amstrad_CPC_464" class="amstrad">
+    <BlinkingAmstrad />
+  </a>
+  ), sviluppo per il web dal 2008 (
+  <a href="http://jeflab.it/" class="noWrap">
+    <JefLogo aria-label="j&fLab" /> j&fLab.it
+  </a>
+  ) e mi sono specializzato nella creazione di applicazioni, in particolare di front-end,
+  ma mi dedico anche al back-end.
+</p>
+<p>
+  Le mie tecnologie preferite in questo momento sono:{" "}
+  <span class="noWrap">
+    <ReactLogo aria-label="React" /> React
+  </span>
+  ,{" "}
+  <span class="noWrap">
+    <TypescriptLogo aria-label="TypeScript" /> TypeScript
+  </span>
+  ,{" "}
+  <span class="noWrap">
+    <GraphqlLogo aria-label="GraphQl" /> GraphQl
+  </span>
+  ,{" "}
+  <span class="noWrap">
+    <NodejsLogo id="bio" aria-label="Node.js" /> Node.js
+  </span>{" "}
+  and{" "}
+  <span class="noWrap">
+    <PostgresLogo aria-label="PostgreSQL" /> PostgreSQL
+  </span>
+  .
+</p>
+<p>
+  Sono nato nel 1984 in Val Camonica ma dal 2016 vivo in provincia di Brescia
+  con{" "}
+  <span class="noWrap">
+    <span role="img" aria-label="Donna">👩🏼‍🦰</span> Eva
+  </span>
+  ,{" "}
+  <span class="noWrap">
+    <span role="img" aria-label="Gatto">🐱</span> Enzo
+  </span>
+  ,{" "}
+  <span class="noWrap">
+    <span role="img" aria-label="Gatto">🐱</span> Sheeba
+  </span>{" "}
+  e{" "}
+  <span class="noWrap">
+    <span role="img" aria-label="Gatto">🐱</span> Vasja
+  </span>
+  .
+</p>
+<p>
+  Adoro cucinare, friggere, impastare, grigliare e ultimamente mi sono
+  appassionato alla cottura sous-vide.
+  <br />
+  Mi piacciono i videogiochi, soprattutto RPG, strategici e gestionali (sto guardando
+  te,{" "}
+  <a href="https://store.steampowered.com/app/427520/Factorio/" class="noWrap">
+    <img src={factorioLogo.src} alt="factorio logo" class="icon" /> factorio
+  </a>
+  )
+</p>
+
+<style>
+  .amstrad {
+    text-shadow: 0 0 3px var(--color-amstradGreen);
+  }
+  .amstrad:hover {
+    color: var(--color-amstradGreen);
+  }
+
+  .noWrap {
+    white-space: nowrap;
+  }
+
+  .icon {
+    display: inline-block;
+    vertical-align: -0.1875em;
+    height: 1.0625em;
+  }
+</style>

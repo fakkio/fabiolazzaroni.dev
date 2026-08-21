@@ -1,2 +1,24 @@
 # Ignore the .idea directory
 /.idea/
+
+# Claude specific files
+/.claude/
+/CLAUDE.md
+
+# Node
+/node_modules/
+
+# Astro
+/dist/
+/.astro/
+
+# Environment variables
+.env
+.env.production
+
+# Playwright
+/test-results/
+/playwright-report/
+/blob-report/
+/visual/**/*-actual.png
+/visual/**/*-diff.png

@@ -1,0 +1,147 @@
+---
+import AstroLogo from "./icons/AstroLogo.astro";
+import CssLogo from "./icons/CssLogo.astro";
+import DockerLogo from "./icons/DockerLogo.astro";
+import GitHubLogo from "./icons/GitHubLogo.astro";
+import GraphqlLogo from "./icons/GraphqlLogo.astro";
+import HTMLLogo from "./icons/HTMLLogo.astro";
+import JavaScriptLogo from "./icons/JavaScriptLogo.astro";
+import NodejsLogo from "./icons/NodejsLogo.astro";
+import PostgresLogo from "./icons/PostgresLogo.astro";
+import ReactLogo from "./icons/ReactLogo.astro";
+import TypescriptLogo from "./icons/TypescriptLogo.astro";
+
+// Labels corrected to official branding here per #15 (ReactJs -> React,
+// GraphQl -> GraphQL) — Bio.astro's own mentions of these technologies are
+// untouched, since that fix was scoped to this list alone.
+export type Technology =
+  | "react"
+  | "typescript"
+  | "graphql"
+  | "node"
+  | "postgres"
+  | "docker"
+  | "js"
+  | "css"
+  | "html"
+  | "astro";
+
+const LABELS: Record<Technology, string> = {
+  react: "React",
+  typescript: "TypeScript",
+  graphql: "GraphQL",
+  node: "Node.js",
+  postgres: "PostgreSQL",
+  docker: "Docker",
+  js: "JavaScript",
+  css: "CSS",
+  html: "HTML",
+  astro: "Astro",
+};
+
+interface Props {
+  desc: string;
+  id: string;
+  name: string;
+  repo: string;
+  technologies: Technology[];
+  url: string;
+}
+
+const {desc, id, name, repo, technologies, url} = Astro.props;
+// NodejsLogo and AstroLogo both need a caller-supplied id when they render
+// more than once on the page (see #8/#13) — reuse this lab's slug for that.
+const gradientId = `lab-${id}`;
+---
+
+<li class="lab">
+  <h3 class="title">
+    <a href={url} class="stretchedLink">
+      <span>{name}</span>
+    </a>
+    <a href={repo} class="onlyIcon">
+      <GitHubLogo aria-label="repository github" />
+    </a>
+  </h3>
+  <p class="description">{desc}</p>
+  <ul class="technologiesList">
+    {
+      technologies.map((technology) => (
+        <li>
+          {technology === "react" && <ReactLogo aria-label={LABELS.react} />}
+          {technology === "typescript" && (
+            <TypescriptLogo aria-label={LABELS.typescript} />
+          )}
+          {technology === "graphql" && (
+            <GraphqlLogo aria-label={LABELS.graphql} />
+          )}
+          {technology === "node" && (
+            <NodejsLogo id={gradientId} aria-label={LABELS.node} />
+          )}
+          {technology === "postgres" && (
+            <PostgresLogo aria-label={LABELS.postgres} />
+          )}
+          {technology === "docker" && <DockerLogo aria-label={LABELS.docker} />}
+          {technology === "js" && <JavaScriptLogo aria-label={LABELS.js} />}
+          {technology === "css" && <CssLogo aria-label={LABELS.css} />}
+          {technology === "html" && <HTMLLogo aria-label={LABELS.html} />}
+          {technology === "astro" && (
+            <AstroLogo id={gradientId} aria-label={LABELS.astro} />
+          )}
+        </li>
+      ))
+    }
+  </ul>
+</li>
+
+<style>
+  .lab {
+    /* Explicit now: this used to only contain the stretched-link overlay
+       (a.stretchedLink::after) because backdrop-filter happens to also
+       create a containing block. */
+    position: relative;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    background: var(--color-bgTranslucent)
+      linear-gradient(to right bottom, #ffffff11, #ffffff00, #00000011);
+    backdrop-filter: blur(3px);
+    box-shadow:
+      0 1.6px 3.6px 0 rgba(0, 0, 0, 0.132),
+      0 0.3px 0.9px 0 rgba(0, 0, 0, 0.108);
+    border: 1px solid var(--color-muted);
+    margin-bottom: 1rem;
+    transition:
+      background-color var(--theme-transition-duration),
+      border var(--theme-transition-duration);
+  }
+
+  .lab:last-child {
+    margin-bottom: 0;
+  }
+
+  .title {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.25rem;
+  }
+
+  .description {
+    margin-bottom: 0.5rem;
+  }
+
+  .technologiesList {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    margin-bottom: 0;
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  .lab :global(.onlyIcon) {
+    /* Explicit now: this used to work only because .title is a flex
+       container, which grants z-index to a statically-positioned child. */
+    position: relative;
+    z-index: 2;
+  }
+</style>

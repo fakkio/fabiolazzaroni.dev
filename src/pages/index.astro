@@ -1,0 +1,21 @@
+---
+import Bio from "../components/Bio.astro";
+import Labs from "../components/Labs.astro";
+import ProfilePicture from "../components/ProfilePicture.astro";
+import WavingHand from "../components/WavingHand.astro";
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout>
+  <ProfilePicture />
+  <h1 class="title">Ciao! Sono Fabio <WavingHand /></h1>
+  <Bio />
+  <h2>.labs()</h2>
+  <Labs />
+</Layout>
+
+<style>
+  .title {
+    margin-top: 1rem;
+  }
+</style>

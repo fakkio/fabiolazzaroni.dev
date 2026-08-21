@@ -1,0 +1,23 @@
+---
+import DarkToggle from "./DarkToggle.astro";
+---
+
+<header class="header container">
+  <DarkToggle />
+</header>
+
+<style>
+  .header {
+    display: flex;
+    justify-content: flex-end;
+    flex: 0 0 auto;
+    margin-bottom: 1rem;
+  }
+
+  /* Same specificity as .container's own `padding: 0 1rem` shorthand
+     (which zeroes padding-top) — compounded onto .container so this wins
+     regardless of CSS injection order between this component and global.css. */
+  .header.container {
+    padding-top: 1rem;
+  }
+</style>

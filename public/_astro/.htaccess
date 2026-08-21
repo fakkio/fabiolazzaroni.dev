@@ -1,0 +1,10 @@
+# Long-term immutable cache for Astro's content-hashed build assets.
+#
+# Re-points gatsby-plugin-htaccess's public/static/.htaccess at this
+# repo's equivalent hashed-asset directory (Astro emits into /_astro/
+# where Gatsby emitted into /static/) — see #14/#23 on the wayfinder
+# map. Merges into dist/_astro/ at build time since it lives in public/.
+
+<IfModule mod_headers.c>
+    Header set Cache-Control "public, max-age=31536000, immutable"
+</IfModule>
