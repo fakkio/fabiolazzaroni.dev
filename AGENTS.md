@@ -12,6 +12,10 @@ Everything written down is in English: commit messages, code (identifiers, comme
 
 Ticket group from a spec (`to-spec` → `to-tickets`): one `feature/` branch for the whole group, tickets and the spec issue close as they complete. One-off fix/tweak: commit straight to `develop`, no branch. See `docs/agents/branching.md`.
 
+### Releases
+
+Cut and finish a `release/<version>` branch (git flow style), bumping the version, updating npm packages, and checking before merging to `main`. See `docs/agents/release.md`.
+
 ## Agent skills
 
 ### Issue tracker
