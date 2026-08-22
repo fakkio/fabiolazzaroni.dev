@@ -6,4 +6,5 @@ export const SITE_METADATA = {
   title: "Fabio Lazzaroni ingegnere informatico",
   description: "Informazioni personali e professionali su Fabio Lazzaroni",
   author: "Fabio Lazzaroni <lazzaroni@jeflab.it> (http://fabiolazzaroni.dev/)",
+  twitter: "@Fakkio84",
 };
