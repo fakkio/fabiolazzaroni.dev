@@ -9,12 +9,20 @@ import hatTiling from "../assets/hat-tiling.svg?raw";
     position: fixed;
     inset: 0;
     z-index: -1;
+    overflow: hidden;
+    opacity: 0.5;
   }
 
+  /* Oversized relative to the viewport so the -15deg rotation below still
+     covers every corner with no gaps: at 150vmax a side, the layer's
+     incircle exceeds the viewport's diagonal at any rotation angle. */
   .hat-background :global(svg) {
-    display: block;
-    width: 100%;
-    height: 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 150vmax;
+    height: 150vmax;
+    transform: translate(-50%, -50%) rotate(-15deg);
   }
 
   .hat-background :global(.hat-accent) {
@@ -28,7 +36,7 @@ import hatTiling from "../assets/hat-tiling.svg?raw";
   .hat-background :global(.hat-accent),
   .hat-background :global(.hat-base) {
     stroke: var(--color-hatLine);
-    stroke-width: 0.1;
+    stroke-width: 0.05;
     transition:
       fill var(--theme-transition-duration),
       stroke var(--theme-transition-duration);

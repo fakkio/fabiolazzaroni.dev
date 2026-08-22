@@ -31,8 +31,8 @@
   --color-invertedText: #34495e;
   --color-invertedBackground: #ecf0f1;
   --color-amstradGreen: #00ff66;
-  --color-hatAccent: #2c3e50;
-  --color-hatBase: #34495e;
+  --color-hatAccent: #34495e;
+  --color-hatBase: #2c3e50;
   --color-hatLine: #253443;
 }
 
@@ -46,8 +46,8 @@
     --color-invertedText: #34495e;
     --color-invertedBackground: #ecf0f1;
     --color-amstradGreen: #00ff66;
-    --color-hatAccent: #2c3e50;
-    --color-hatBase: #34495e;
+    --color-hatAccent: #34495e;
+    --color-hatBase: #2c3e50;
     --color-hatLine: #253443;
   }
 }
