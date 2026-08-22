@@ -14,6 +14,9 @@
   --color-invertedText: #ecf0f1;
   --color-invertedBackground: #34495e;
   --color-amstradGreen: #00cc52;
+  --color-hatAccent: #ecf0f1;
+  --color-hatBase: #ffffff;
+  --color-hatLine: #bdc3c7;
 
   --theme-transition-duration: 0.25s;
   --underline-bounce-easing: cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -28,6 +31,9 @@
   --color-invertedText: #34495e;
   --color-invertedBackground: #ecf0f1;
   --color-amstradGreen: #00ff66;
+  --color-hatAccent: #2c3e50;
+  --color-hatBase: #34495e;
+  --color-hatLine: #253443;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -40,5 +46,8 @@
     --color-invertedText: #34495e;
     --color-invertedBackground: #ecf0f1;
     --color-amstradGreen: #00ff66;
+    --color-hatAccent: #2c3e50;
+    --color-hatBase: #34495e;
+    --color-hatLine: #253443;
   }
 }
