@@ -63,6 +63,14 @@ const gradientId = `astro-mark-gradient${id ? `-${id}` : ""}`;
     vertical-align: -0.1875em;
   }
 
+  .astro-mark-tail,
+  .astro-mark-body,
+  .astro-mark-tail-gradient {
+    transition:
+      fill var(--theme-transition-duration),
+      opacity var(--theme-transition-duration);
+  }
+
   /* Default: light surface — solid #17191E on both paths, gradient tail hidden. */
   .astro-mark-tail,
   .astro-mark-body {
