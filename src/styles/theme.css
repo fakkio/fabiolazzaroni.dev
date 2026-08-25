@@ -13,6 +13,7 @@
   --color-muted: #b4c3c7;
   --color-invertedText: #ecf0f1;
   --color-invertedBackground: #34495e;
+  --color-invertedLink: #3498db;
   --color-amstradGreen: #00cc52;
   --color-hatAccent: #ecf0f1;
   --color-hatBase: #ffffff;
@@ -30,6 +31,7 @@
   --color-muted: #4d565f;
   --color-invertedText: #34495e;
   --color-invertedBackground: #ecf0f1;
+  --color-invertedLink: #2980b9;
   --color-amstradGreen: #00ff66;
   --color-hatAccent: #34495e;
   --color-hatBase: #2c3e50;
@@ -45,6 +47,7 @@
     --color-muted: #4d565f;
     --color-invertedText: #34495e;
     --color-invertedBackground: #ecf0f1;
+    --color-invertedLink: #2980b9;
     --color-amstradGreen: #00ff66;
     --color-hatAccent: #34495e;
     --color-hatBase: #2c3e50;

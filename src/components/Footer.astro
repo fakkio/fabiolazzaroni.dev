@@ -18,7 +18,7 @@ const year = new Date().getFullYear();
       <span role="img" aria-label="Caffè">☕</span>
     </span>
     <span>
-      P.IVA: 03963600162 -{" "}
+      <a href="/privacy">Privacy</a> -{" "}
       <a href="https://github.com/Fakkio" class="onlyIcon">
         <GitHubLogo inverted aria-label="My GitHub profile" />
       </a>{" "}
@@ -43,6 +43,15 @@ const year = new Date().getFullYear();
     transition:
       color var(--theme-transition-duration),
       background-color var(--theme-transition-duration);
+  }
+
+  /* The footer's background is the *inverted* theme color (light footer on
+     dark pages, dark footer on light pages), but the global `a` color
+     always follows the page's own theme — so a plain text link in here
+     needs its own token, not the page's --color-link. */
+  .footer a,
+  .footer a:hover {
+    color: var(--color-invertedLink);
   }
 
   .inner {

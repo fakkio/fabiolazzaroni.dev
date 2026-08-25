@@ -4,7 +4,7 @@ A release cuts a `release/<version>` branch from `develop` and finishes it into 
 
 1. **Cut the branch**: `git checkout -b release/<version> develop`.
 
-2. **Bump the version**: set `version` in `package.json` to `<version>`, commit `🔖 bump version to <version>`.
+2. **Bump the version**: set `version` in `package.json` to `<version>`, run `npm i` (syncs `package-lock.json`'s version field — `npm update` alone won't touch it), commit both files as `🔖 bump version to <version>`.
 
 3. **Update npm packages**: run `npm update` to refresh `package-lock.json` against the current `package.json` ranges. Commit the lockfile if it changed.
 
