@@ -6,47 +6,51 @@
 // and persists it; there is no per-frame JS driving the animation.
 ---
 
-<svg
-  class="toggle"
-  data-dark-toggle
-  xmlns="http://www.w3.org/2000/svg"
-  width="32"
-  height="32"
-  viewBox="0 0 24 24"
-  fill="none"
-  stroke-width="2"
-  stroke-linecap="round"
-  stroke-linejoin="round"
-  stroke="currentColor"
->
-  <mask id="darkToggleMask">
-    <rect x="0" y="0" width="100%" height="100%" fill="white"></rect>
-    <circle class="maskCircle" cx="100%" cy="0%" r="9" fill="black"></circle>
-  </mask>
+<button type="button" class="toggle" data-dark-toggle aria-pressed="false">
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="32"
+    height="32"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke-width="2"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    stroke="currentColor"
+  >
+    <mask id="darkToggleMask">
+      <rect x="0" y="0" width="100%" height="100%" fill="white"></rect>
+      <circle class="maskCircle" cx="100%" cy="0%" r="9" fill="black"></circle>
+    </mask>
 
-  <circle
-    class="centerCircle"
-    cx="12"
-    cy="12"
-    r="5"
-    mask="url(#darkToggleMask)"
-    fill="currentColor"></circle>
-  <g class="rays" stroke="currentColor">
-    <line x1="12" y1="1" x2="12" y2="3"></line>
-    <line x1="12" y1="21" x2="12" y2="23"></line>
-    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-    <line x1="1" y1="12" x2="3" y2="12"></line>
-    <line x1="21" y1="12" x2="23" y2="12"></line>
-    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-  </g>
-</svg>
+    <circle
+      class="centerCircle"
+      cx="12"
+      cy="12"
+      r="5"
+      mask="url(#darkToggleMask)"
+      fill="currentColor"></circle>
+    <g class="rays" stroke="currentColor">
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </g>
+  </svg>
+</button>
 
 <style>
   .toggle {
     cursor: pointer;
     color: #e67e22;
+    background: none;
+    border: none;
+    padding: 0;
+    display: inline-flex;
     transform: rotate(90deg);
     transition:
       transform 600ms cubic-bezier(0.34, 1.56, 0.64, 1),
@@ -89,12 +93,29 @@
 <script>
   import {COLOR_MODE_KEY} from "../utils/constants";
 
-  document
-    .querySelector("[data-dark-toggle]")
-    ?.addEventListener("click", () => {
+  const LABELS = {
+    light: "Passa al tema scuro",
+    dark: "Passa al tema chiaro",
+  };
+
+  const button = document.querySelector<HTMLButtonElement>(
+    "[data-dark-toggle]",
+  );
+
+  const sync = (theme: string) => {
+    button?.setAttribute("aria-label", LABELS[theme as keyof typeof LABELS]);
+    button?.setAttribute("aria-pressed", String(theme === "dark"));
+  };
+
+  if (button) {
+    sync(document.documentElement.dataset.theme ?? "light");
+
+    button.addEventListener("click", () => {
       const root = document.documentElement;
       const next = root.dataset.theme === "dark" ? "light" : "dark";
       root.dataset.theme = next;
       localStorage.setItem(COLOR_MODE_KEY, next);
+      sync(next);
     });
+  }
 </script>
