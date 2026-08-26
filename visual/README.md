@@ -4,12 +4,20 @@ The instrument the Gatsby-to-Astro port is judged with: a Playwright capture of
 <https://fabiolazzaroni.dev/> as it stands today, frozen into PNGs under
 `baseline/`, that a later run can diff the Astro build against.
 
+This directory also holds `a11y.spec.js`, an unrelated but same-harness suite:
+an axe-core scan of every page, in both themes, against the site's declared
+WCAG 2.2 AA target (`docs/adr/0001-wcag-aa-accessibility-target.md`). It shares
+the `live`/`local` project split below but asserts on violations, not pixels —
+it has no baseline to keep in sync.
+
 ## Run it
 
 ```bash
 npm run visual           # diff the live Gatsby site against the baselines
 npm run visual:local     # diff a local Astro build against the same baselines
 npm run visual:baseline  # re-capture from the live site (only for an intentional delta)
+npm run a11y             # axe-scan the live site
+npm run a11y:local       # axe-scan a local Astro build
 ```
 
 The target is a Playwright project (`--project=live` / `--project=local`) rather
