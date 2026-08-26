@@ -1,4 +1,5 @@
 ---
+import {Image} from "astro:assets";
 import factorioLogo from "../assets/factorio-logo.png";
 import BlinkingAmstrad from "./BlinkingAmstrad.astro";
 import GraphqlLogo from "./icons/GraphqlLogo.astro";
@@ -72,7 +73,14 @@ import TypescriptLogo from "./icons/TypescriptLogo.astro";
   Mi piacciono i videogiochi, soprattutto RPG, strategici e gestionali (sto guardando
   te,{" "}
   <a href="https://store.steampowered.com/app/427520/Factorio/" class="noWrap">
-    <img src={factorioLogo.src} alt="factorio logo" class="icon" /> factorio
+    <Image
+      src={factorioLogo}
+      alt="factorio logo"
+      class="icon"
+      width={53}
+      height={34}
+      densities={[1, 2]}
+    /> factorio
   </a>
   )
 </p>
