@@ -21,9 +21,7 @@ import Cpc464 from "./icons/Cpc464.astro";
     "[data-blinking-amstrad]",
   );
 
-  const reducedMotion = matchMedia(
-    "(prefers-reduced-motion: reduce)",
-  ).matches;
+  const reducedMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   if (span && !reducedMotion) {
     const blink = () => {

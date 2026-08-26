@@ -98,9 +98,8 @@
     dark: "Passa al tema chiaro",
   };
 
-  const button = document.querySelector<HTMLButtonElement>(
-    "[data-dark-toggle]",
-  );
+  const button =
+    document.querySelector<HTMLButtonElement>("[data-dark-toggle]");
 
   const sync = (theme: string) => {
     button?.setAttribute("aria-label", LABELS[theme as keyof typeof LABELS]);

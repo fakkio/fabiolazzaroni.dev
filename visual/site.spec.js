@@ -37,7 +37,7 @@ for (const viewport of VIEWPORTS) {
         test(`${target.name}`, async ({page}) => {
           await page.addInitScript(
             ([key, value]) => window.localStorage.setItem(key, value),
-            [COLOR_MODE_KEY, theme]
+            [COLOR_MODE_KEY, theme],
           );
 
           await page.goto(target.path, {waitUntil: "networkidle"});
@@ -54,7 +54,7 @@ for (const viewport of VIEWPORTS) {
               // An animated GIF: no frame of it is reproducible, so it is
               // painted over. Its box still takes part in the layout diff.
               mask: [page.locator('img[alt="John Travolta confuso"]')],
-            }
+            },
           );
         });
       }
