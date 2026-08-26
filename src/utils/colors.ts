@@ -4,7 +4,7 @@ export const COLORS: ThemeColors = {
   text: {light: "#212529", dark: "#ecf0f1"},
   background: {light: "#ffffff", dark: "#2c3e50"},
   bgTranslucent: {light: "#b4c3c744", dark: "#2c3e5044"},
-  link: {light: "#2980b9", dark: "#3498db"},
+  link: {light: "#2573a7", dark: "#85c1e9"},
   muted: {light: "#b4c3c7", dark: "#4d565f"},
   invertedText: {light: "#ecf0f1", dark: "#34495e"},
   invertedBackground: {light: "#34495e", dark: "#ecf0f1"},
