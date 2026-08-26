@@ -1,0 +1,4 @@
+# Shell scripts must keep LF regardless of core.autocrlf, or a CRLF checkout
+# breaks `sh` execution (e.g. husky invoking .husky/pre-push via `sh -e`).
+.husky/* text eol=lf
+*.sh text eol=lf
