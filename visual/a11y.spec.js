@@ -1,5 +1,6 @@
 import AxeBuilder from "@axe-core/playwright";
 import {expect, test} from "@playwright/test";
+import {gotoWithTheme} from "./color-mode.js";
 
 const TARGETS = [
   {name: "index", path: "/"},
@@ -10,11 +11,6 @@ const TARGETS = [
 
 const THEMES = /** @type {const} */ (["light", "dark"]);
 
-// The theme is picked by a blocking script that reads localStorage first and
-// `prefers-color-scheme` second, so drive both and let them agree (see
-// site.spec.js).
-const COLOR_MODE_KEY = "color-mode";
-
 // The site's declared conformance target (see docs/adr/0001).
 const WCAG_TAGS = ["wcag2a", "wcag2aa", "wcag21a", "wcag21aa", "wcag22aa"];
 
@@ -24,12 +20,7 @@ for (const theme of THEMES) {
 
     for (const target of TARGETS) {
       test(target.name, async ({page}) => {
-        await page.addInitScript(
-          ([key, value]) => window.localStorage.setItem(key, value),
-          [COLOR_MODE_KEY, theme],
-        );
-
-        await page.goto(target.path, {waitUntil: "networkidle"});
+        await gotoWithTheme(page, target.path, theme);
 
         const results = await new AxeBuilder({page})
           .withTags(WCAG_TAGS)
@@ -38,5 +29,38 @@ for (const theme of THEMES) {
         expect(results.violations).toEqual([]);
       });
     }
+
+    // axe only inspects the DOM at rest, so it can't catch a control that
+    // looks fine statically but can't actually be driven from the keyboard
+    // (SC 2.1.1) or that drops its focus affordance (SC 2.4.7). Regression
+    // tests for those two, alongside the fixes that first addressed them.
+    test("the theme toggle is keyboard-operable", async ({page}) => {
+      await gotoWithTheme(page, "/", theme);
+
+      const toggle = page.locator("[data-dark-toggle]");
+      const before = await toggle.getAttribute("aria-pressed");
+
+      await toggle.press("Enter");
+
+      await expect(toggle).not.toHaveAttribute("aria-pressed", before);
+      await expect
+        .poll(() => page.evaluate(() => document.documentElement.dataset.theme))
+        .toBe(before === "true" ? "light" : "dark");
+    });
+
+    test("a keyboard-focused link gets the same underline reveal as hover", async ({
+      page,
+    }) => {
+      await gotoWithTheme(page, "/privacy", theme);
+
+      const link = page.locator("a:not(.onlyIcon)").first();
+      await link.focus();
+
+      await expect
+        .poll(() =>
+          link.evaluate((el) => getComputedStyle(el, "::after").opacity),
+        )
+        .toBe("1");
+    });
   });
 }

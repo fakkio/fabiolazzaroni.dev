@@ -1,4 +1,5 @@
 import {expect, test} from "@playwright/test";
+import {gotoWithTheme} from "./color-mode.js";
 
 const TARGETS = [
   {name: "index", path: "/"},
@@ -12,10 +13,6 @@ const VIEWPORTS = [
   {name: "desktop", width: 1280, height: 800},
   {name: "mobile", width: 390, height: 844},
 ];
-
-// The theme is picked by a blocking script that reads localStorage first and
-// `prefers-color-scheme` second, so drive both and let them agree.
-const COLOR_MODE_KEY = "color-mode";
 
 // The Amstrad blink is not a CSS animation: a JS timer writes an inline colour
 // on the span every 5-15s, which `animations: "disabled"` cannot touch. Pinning
@@ -35,12 +32,7 @@ for (const viewport of VIEWPORTS) {
 
       for (const target of TARGETS) {
         test(`${target.name}`, async ({page}) => {
-          await page.addInitScript(
-            ([key, value]) => window.localStorage.setItem(key, value),
-            [COLOR_MODE_KEY, theme],
-          );
-
-          await page.goto(target.path, {waitUntil: "networkidle"});
+          await gotoWithTheme(page, target.path, theme);
           await page.evaluate(() => document.fonts.ready);
           await page.addStyleTag({content: FREEZE_BLINKING_AMSTRAD});
           // The Amstrad gradient and the dark-mode toggle are react-spring
