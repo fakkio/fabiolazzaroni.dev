@@ -67,6 +67,12 @@ const year = new Date().getFullYear();
     will-change: transform;
   }
 
+  @media (prefers-reduced-motion: reduce) {
+    .beat {
+      animation: none;
+    }
+  }
+
   @keyframes beat {
     0% {
       transform: scale(1);

@@ -17,6 +17,12 @@
     animation-iteration-count: infinite;
   }
 
+  @media (prefers-reduced-motion: reduce) {
+    .wave {
+      animation: none;
+    }
+  }
+
   @keyframes wave-animation {
     0% {
       transform: rotate(0deg);
