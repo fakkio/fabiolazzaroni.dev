@@ -101,5 +101,9 @@ import TypescriptLogo from "./icons/TypescriptLogo.astro";
     display: inline-block;
     vertical-align: -0.1875em;
     height: 1.0625em;
+    /* Image sets width/height HTML attributes, which the browser maps to
+       presentational width/height styles. Overriding only height here
+       leaves that width hint in place and breaks the aspect ratio. */
+    width: auto;
   }
 </style>
