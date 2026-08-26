@@ -44,7 +44,8 @@ a.onlyIcon {
   display: inline-block;
   transition: transform 0.25s;
 }
-a.onlyIcon:hover {
+a.onlyIcon:hover,
+a.onlyIcon:focus-visible {
   transform: scale(1.35);
 }
 
@@ -61,11 +62,14 @@ a.stretchedLink::after {
   z-index: 1;
 }
 
-a:hover {
+a:hover,
+a:focus-visible {
   color: var(--color-link);
 }
 a:hover:not(.onlyIcon):not(.stretchedLink)::after,
-a:hover.stretchedLink > *::after {
+a:hover.stretchedLink > *::after,
+a:focus-visible:not(.onlyIcon):not(.stretchedLink)::after,
+a:focus-visible.stretchedLink > *::after {
   opacity: 1;
   transform: scale(1);
 }

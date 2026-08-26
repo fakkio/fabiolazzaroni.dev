@@ -12,6 +12,13 @@ import {defineConfig, devices} from "@playwright/test";
  *   npm run visual:local    # local
  *
  * `LOCAL_URL` overrides the local port when it is not Astro's default.
+ *
+ * Deliberately no `webServer` entry: both `astro dev` and `astro preview` in
+ * this Astro version always daemonize and return immediately (their own
+ * `stop`/`status` subcommands manage the singleton background process), which
+ * doesn't fit Playwright's model of a command it keeps a handle on and kills
+ * itself. `scripts/a11y-ci.mjs` drives the daemon directly instead — see
+ * `npm run a11y:ci`.
  */
 const LIVE_URL = "https://fabiolazzaroni.dev";
 const LOCAL_URL = process.env.LOCAL_URL ?? "http://localhost:4321";

@@ -16,18 +16,25 @@
     "check": "astro check",
     "lint": "eslint .",
     "format": "prettier --write .",
-    "visual": "playwright test --project=live",
-    "visual:local": "playwright test --project=local",
-    "visual:baseline": "playwright test --project=live --update-snapshots"
+    "format:check": "prettier --check .",
+    "visual": "playwright test --project=live visual/site.spec.js",
+    "visual:local": "playwright test --project=local visual/site.spec.js",
+    "visual:baseline": "playwright test --project=live --update-snapshots visual/site.spec.js",
+    "a11y": "playwright test --project=live visual/a11y.spec.js",
+    "a11y:local": "playwright test --project=local visual/a11y.spec.js",
+    "a11y:ci": "node scripts/a11y-ci.mjs",
+    "prepare": "husky"
   },
   "dependencies": {
     "astro": "^7.2.4"
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.4",
+    "@axe-core/playwright": "^4.13.0",
     "@playwright/test": "^1.56.0",
     "eslint": "^10.8.1",
     "eslint-plugin-astro": "^3.1.0",
+    "husky": "^9.1.7",
     "prettier": "^3.9.6",
     "prettier-plugin-astro": "^0.14.1",
     "typescript": "^6.0.0",
