@@ -8,14 +8,14 @@ const year = new Date().getFullYear();
 
 <footer class="footer">
   <div class="inner container">
-    <span>
+    <span lang="en">
       2014 - {year} | Built with{" "}
-      <span role="img" aria-label="Passione" class="beat">❤</span>, <AstroLogo
+      <span role="img" aria-label="Passion" class="beat">❤</span>, <AstroLogo
         inverted
         id="footer"
         aria-label="Astro"
       /> and{" "}
-      <span role="img" aria-label="Caffè">☕</span>
+      <span role="img" aria-label="Coffee">☕</span>
     </span>
     <span>
       <a href="/privacy">Privacy</a> -{" "}
@@ -65,6 +65,12 @@ const year = new Date().getFullYear();
     animation: beat 10s infinite;
     animation-delay: 7.5s;
     will-change: transform;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .beat {
+      animation: none;
+    }
   }
 
   @keyframes beat {
