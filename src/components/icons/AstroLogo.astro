@@ -1,32 +1,31 @@
 ---
+// `inverted` becomes a `data-inverted` attribute that flips which side of the
+// light/dark fill pair applies — same pattern as GitHubLogo.
+//
 // Unlike the other logos, this one can't take its fill from `currentColor` —
 // Astro's press rules forbid recolouring the logo, so the fill is restricted
 // to the two official published values plus the official gradient logomark,
-// switched by which surface the instance sits on.
+// switched by which surface the instance sits on. Combined with
+// `[data-theme="dark"]` this reproduces all four backdrop combinations using
+// only officially published fills: solid #17191E on a light surface, the
+// official gradient logomark on a dark one.
 //
-// `inverted` unset follows the page's theme; set, it sits on an inverted
-// background (like the footer). Combined with `[data-theme="dark"]` this
-// reproduces all four backdrop combinations using only officially published
-// fills: solid #17191E on a light surface, the official gradient logomark on
-// a dark one.
-interface Props {
+// `id` isn't a DOM id — like NodejsLogo, it namespaces the gradient so two
+// instances on the same page don't collide.
+import Icon from "./Icon.astro";
+
+interface Props extends astroHTML.JSX.SVGAttributes {
   inverted?: boolean;
   id?: string;
-  "aria-label"?: string;
-  class?: string;
 }
 
-const {inverted = false, id, ...rest} = Astro.props;
+const {inverted, id, class: className, ...rest} = Astro.props;
 const gradientId = `astro-mark-gradient${id ? `-${id}` : ""}`;
 ---
 
-<svg
-  role="img"
-  height="17"
-  width="13.5"
+<Icon
   viewBox="0 0 85 107"
-  preserveAspectRatio="xMidYMid meet"
-  class="astro-mark"
+  class={className}
   data-inverted={inverted || undefined}
   {...rest}
 >
@@ -55,14 +54,9 @@ const gradientId = `astro-mark-gradient${id ? `-${id}` : ""}`;
       <stop offset="1" stop-color="#F041FF"></stop>
     </linearGradient>
   </defs>
-</svg>
+</Icon>
 
 <style>
-  .astro-mark {
-    display: inline-block;
-    vertical-align: -0.1875em;
-  }
-
   .astro-mark-tail,
   .astro-mark-body,
   .astro-mark-tail-gradient {
@@ -81,32 +75,25 @@ const gradientId = `astro-mark-gradient${id ? `-${id}` : ""}`;
   }
 
   /* Dark surface, not inverted (the Labs card in dark theme): white + gradient. */
-  :global([data-theme="dark"])
-    .astro-mark:not([data-inverted])
-    .astro-mark-tail,
-  :global([data-theme="dark"])
-    .astro-mark:not([data-inverted])
-    .astro-mark-body,
-  .astro-mark[data-inverted] .astro-mark-tail,
-  .astro-mark[data-inverted] .astro-mark-body {
+  :global([data-theme="dark"] svg:not([data-inverted])) .astro-mark-tail,
+  :global([data-theme="dark"] svg:not([data-inverted])) .astro-mark-body,
+  :global(svg[data-inverted]) .astro-mark-tail,
+  :global(svg[data-inverted]) .astro-mark-body {
     fill: #ffffff;
   }
-  :global([data-theme="dark"])
-    .astro-mark:not([data-inverted])
+  :global([data-theme="dark"] svg:not([data-inverted]))
     .astro-mark-tail-gradient,
-  .astro-mark[data-inverted] .astro-mark-tail-gradient {
+  :global(svg[data-inverted]) .astro-mark-tail-gradient {
     opacity: 1;
   }
 
   /* Dark surface, inverted (the footer in dark theme, page is light-surface there):
      falls back to solid #17191E — the XOR of theme and `inverted`. */
-  :global([data-theme="dark"]) .astro-mark[data-inverted] .astro-mark-tail,
-  :global([data-theme="dark"]) .astro-mark[data-inverted] .astro-mark-body {
+  :global([data-theme="dark"] svg[data-inverted]) .astro-mark-tail,
+  :global([data-theme="dark"] svg[data-inverted]) .astro-mark-body {
     fill: #17191e;
   }
-  :global([data-theme="dark"])
-    .astro-mark[data-inverted]
-    .astro-mark-tail-gradient {
+  :global([data-theme="dark"] svg[data-inverted]) .astro-mark-tail-gradient {
     opacity: 0;
   }
 </style>
