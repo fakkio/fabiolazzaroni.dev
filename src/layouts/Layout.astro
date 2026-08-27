@@ -8,6 +8,7 @@ import "../styles/base.css";
 import "../styles/theme.css";
 import "../styles/global.css";
 import {COLOR_MODE_KEY, SITE_METADATA} from "../utils/constants";
+import {version} from "../../package.json";
 
 interface Props {
   title?: string;
@@ -33,6 +34,7 @@ const pageTitle = title
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="generator" content={Astro.generator} />
+    <meta name="version" content={version} />
     <link rel="icon" href="/favicon.png" type="image/png" />
     <link rel="author" href="/humans.txt" />
     <title>{pageTitle}</title>
