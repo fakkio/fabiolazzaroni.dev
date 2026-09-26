@@ -1,9 +1,17 @@
 ---
-// A CSS transition drives the whole animation. All visual state below reacts
-// to the ancestor data-theme attribute purely through the CSS cascade —
-// cx/cy/r are SVG geometry properties, so a CSS override on them transitions
-// like any other property. The click handler only ever flips that attribute
-// and persists it; there is no per-frame JS driving the animation.
+// The icon itself (sun rays / moon mask) still animates the old way: a CSS
+// transition reacting to the ancestor data-theme attribute through the
+// cascade — cx/cy/r are SVG geometry properties, so a CSS override on them
+// transitions like any other property.
+//
+// The page-wide theme swap additionally goes through the View Transitions
+// API: the click handler starts a view transition around the data-theme
+// flip, and a clip-path circle grows from the button's centre on
+// ::view-transition-new(root), revealing the new theme underneath — same
+// idea as Telegram's theme toggle. Browsers without support (or with
+// prefers-reduced-motion) just flip the attribute directly, same as before.
+// The button disables itself for the duration of the transition rather than
+// supporting overlapping reveals, which isn't worth the complexity here.
 ---
 
 <button type="button" class="toggle" data-dark-toggle aria-pressed="false">
@@ -46,6 +54,26 @@
 </button>
 
 <style>
+  :global(::view-transition-old(root)) {
+    animation: none;
+  }
+
+  :global(::view-transition-new(root)) {
+    animation: reveal-circle 500ms cubic-bezier(0.65, 0, 0.35, 1) both;
+  }
+
+  @keyframes reveal-circle {
+    from {
+      clip-path: circle(0 at var(--reveal-x, 100%) var(--reveal-y, 0%));
+    }
+    to {
+      clip-path: circle(
+        var(--reveal-radius, 150%) at var(--reveal-x, 100%)
+          var(--reveal-y, 0%)
+      );
+    }
+  }
+
   .toggle {
     cursor: pointer;
     color: #e67e22;
@@ -54,6 +82,10 @@
     padding: 0;
     display: inline-flex;
     transition: color 600ms cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  .toggle:disabled {
+    cursor: default;
   }
 
   .icon {
@@ -119,9 +151,38 @@
     button.addEventListener("click", () => {
       const root = document.documentElement;
       const next = root.dataset.theme === "dark" ? "light" : "dark";
-      root.dataset.theme = next;
-      localStorage.setItem(COLOR_MODE_KEY, next);
-      sync(next);
+
+      const applyTheme = () => {
+        root.dataset.theme = next;
+        localStorage.setItem(COLOR_MODE_KEY, next);
+        sync(next);
+      };
+
+      const reducedMotion = matchMedia(
+        "(prefers-reduced-motion: reduce)",
+      ).matches;
+
+      if (!document.startViewTransition || reducedMotion) {
+        applyTheme();
+        return;
+      }
+
+      const rect = button.getBoundingClientRect();
+      const x = rect.left + rect.width / 2;
+      const y = rect.top + rect.height / 2;
+      const radius = Math.hypot(
+        Math.max(x, innerWidth - x),
+        Math.max(y, innerHeight - y),
+      );
+      root.style.setProperty("--reveal-x", `${x}px`);
+      root.style.setProperty("--reveal-y", `${y}px`);
+      root.style.setProperty("--reveal-radius", `${radius}px`);
+
+      button.disabled = true;
+      const transition = document.startViewTransition(applyTheme);
+      transition.finished.finally(() => {
+        button.disabled = false;
+      });
     });
   }
 </script>
