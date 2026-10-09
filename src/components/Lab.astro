@@ -1,7 +1,9 @@
 ---
 import AstroLogo from "./icons/AstroLogo.astro";
+import CSharpLogo from "./icons/CSharpLogo.astro";
 import CssLogo from "./icons/CssLogo.astro";
 import DockerLogo from "./icons/DockerLogo.astro";
+import DotnetLogo from "./icons/DotnetLogo.astro";
 import GitHubLogo from "./icons/GitHubLogo.astro";
 import GraphqlLogo from "./icons/GraphqlLogo.astro";
 import HTMLLogo from "./icons/HTMLLogo.astro";
@@ -24,7 +26,9 @@ export type Technology =
   | "js"
   | "css"
   | "html"
-  | "astro";
+  | "astro"
+  | "csharp"
+  | "dotnet";
 
 const LABELS: Record<Technology, string> = {
   react: "React",
@@ -37,6 +41,8 @@ const LABELS: Record<Technology, string> = {
   css: "CSS",
   html: "HTML",
   astro: "Astro",
+  csharp: "C#",
+  dotnet: ".NET",
 };
 
 interface Props {
@@ -49,8 +55,8 @@ interface Props {
 }
 
 const {desc, id, name, repo, technologies, url} = Astro.props;
-// NodejsLogo and AstroLogo both need a caller-supplied id when they render
-// more than once on the page (see #8/#13) — reuse this lab's slug for that.
+// NodejsLogo, AstroLogo and CSharpLogo all need a caller-supplied id when they
+// render more than once on the page — reuse this lab's slug for that.
 const gradientId = `lab-${id}`;
 ---
 
@@ -88,6 +94,10 @@ const gradientId = `lab-${id}`;
           {technology === "astro" && (
             <AstroLogo id={gradientId} aria-label={LABELS.astro} />
           )}
+          {technology === "csharp" && (
+            <CSharpLogo id={gradientId} aria-label={LABELS.csharp} />
+          )}
+          {technology === "dotnet" && <DotnetLogo aria-label={LABELS.dotnet} />}
         </li>
       ))
     }

@@ -64,3 +64,22 @@ for (const theme of THEMES) {
     });
   });
 }
+
+// Several logos carry gradients and clip paths referenced by `url(#id)`, so a
+// second instance of a logo would silently paint with the first one's defs if
+// their ids collided. axe-core no longer flags plain duplicate ids, so check
+// them here. Theme-independent, so outside the loop above.
+for (const target of TARGETS) {
+  test(`${target.name}: no two elements share an id`, async ({page}) => {
+    await page.goto(target.path, {waitUntil: "networkidle"});
+
+    // querySelectorAll rather than a Playwright locator, which would pierce
+    // shadow roots: each one is its own id scope, and in dev the Astro
+    // toolbar's reuse ids across them legitimately.
+    const ids = await page.evaluate(() =>
+      Array.from(document.querySelectorAll("[id]"), (element) => element.id),
+    );
+
+    expect(ids.filter((id, index) => ids.indexOf(id) !== index)).toEqual([]);
+  });
+}

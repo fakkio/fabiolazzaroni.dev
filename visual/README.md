@@ -1,8 +1,10 @@
 # Visual baseline
 
-The instrument the Gatsby-to-Astro port is judged with: a Playwright capture of
-<https://fabiolazzaroni.dev/> as it stands today, frozen into PNGs under
-`baseline/`, that a later run can diff the Astro build against.
+A Playwright capture of the Astro site, frozen into PNGs under `baseline/`, that
+a later run can diff the live site or a local build against. It started out as
+the instrument the Gatsby-to-Astro port was judged with, captured from the old
+Gatsby site; with the port shipped, the baselines are now captured from the
+Astro build itself.
 
 This directory also holds `a11y.spec.js`, an unrelated but same-harness suite:
 an axe-core scan of every page, in both themes, against the site's declared
@@ -13,11 +15,12 @@ it has no baseline to keep in sync.
 ## Run it
 
 ```bash
-npm run visual           # diff the live Gatsby site against the baselines
-npm run visual:local     # diff a local Astro build against the same baselines
-npm run visual:baseline  # re-capture from the live site (only for an intentional delta)
-npm run a11y             # axe-scan the live site
-npm run a11y:local       # axe-scan a local Astro build
+npm run visual                 # diff the live site against the baselines
+npm run visual:local           # diff a local Astro build against the same baselines
+npm run visual:baseline        # re-capture from the live site (only for an intentional delta)
+npm run visual:baseline:local  # re-capture from a local build (an intentional delta not yet released)
+npm run a11y                   # axe-scan the live site
+npm run a11y:local             # axe-scan a local Astro build
 ```
 
 The target is a Playwright project (`--project=live` / `--project=local`) rather
@@ -25,6 +28,10 @@ than an environment variable, so the commands read the same on PowerShell and on
 a POSIX shell. `local` points at Astro's default `http://localhost:4321`; set
 `LOCAL_URL` to override the port. Nothing here boots the server -- that is a
 `webServer` entry a later ticket can add once there is something to boot.
+
+Re-capture local baselines against a production build (`npm run build`, then
+`npx astro preview`), not `astro dev`: the dev server injects Astro's dev
+toolbar into the page, and it would end up in every screenshot.
 
 `npx playwright show-report` or the `test-results/` folder holds the diff images
 when a run fails.
