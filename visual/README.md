@@ -1,8 +1,10 @@
 # Visual baseline
 
-The instrument the Gatsby-to-Astro port is judged with: a Playwright capture of
-<https://fabiolazzaroni.dev/> as it stands today, frozen into PNGs under
-`baseline/`, that a later run can diff the Astro build against.
+A Playwright capture of the Astro site, frozen into PNGs under `baseline/`, that
+a later run can diff the live site or a local build against. It started out as
+the instrument the Gatsby-to-Astro port was judged with, captured from the old
+Gatsby site; with the port shipped, the baselines are now captured from the
+Astro build itself.
 
 This directory also holds `a11y.spec.js`, an unrelated but same-harness suite:
 an axe-core scan of every page, in both themes, against the site's declared
@@ -13,7 +15,7 @@ it has no baseline to keep in sync.
 ## Run it
 
 ```bash
-npm run visual           # diff the live Gatsby site against the baselines
+npm run visual           # diff the live site against the baselines
 npm run visual:local     # diff a local Astro build against the same baselines
 npm run visual:baseline  # re-capture from the live site (only for an intentional delta)
 npm run a11y             # axe-scan the live site

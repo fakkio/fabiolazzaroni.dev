@@ -3,8 +3,8 @@ import {defineConfig, devices} from "@playwright/test";
 /**
  * Visual baseline harness.
  *
- * Two projects over one set of baselines: `live` shoots the Gatsby site the
- * baselines were captured from, `local` shoots the Astro build being ported.
+ * Two projects over one set of baselines: `live` shoots the deployed site,
+ * `local` shoots a local Astro build.
  * Selecting the target with `--project` rather than an environment variable
  * keeps the commands identical on PowerShell and on a POSIX shell.
  *
