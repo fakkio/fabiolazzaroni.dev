@@ -20,6 +20,7 @@
     "visual": "playwright test --project=live visual/site.spec.js",
     "visual:local": "playwright test --project=local visual/site.spec.js",
     "visual:baseline": "playwright test --project=live --update-snapshots visual/site.spec.js",
+    "visual:baseline:local": "playwright test --project=local --update-snapshots=all visual/site.spec.js",
     "a11y": "playwright test --project=live visual/a11y.spec.js",
     "a11y:local": "playwright test --project=local visual/a11y.spec.js",
     "a11y:ci": "node scripts/a11y-ci.mjs",
