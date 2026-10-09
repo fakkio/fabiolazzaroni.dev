@@ -6,7 +6,7 @@ A release cuts a `release/<version>` branch from `develop` and finishes it into 
 
 2. **Bump the version**: set `version` in `package.json` to `<version>`, run `npm i` (syncs `package-lock.json`'s version field — `npm update` alone won't touch it), commit both files as `🔖 bump version to <version>`.
 
-3. **Update npm packages**: run `npm update` to refresh `package-lock.json` against the current `package.json` ranges. Commit the lockfile if it changed.
+3. **Update npm packages**: run `npm update` to refresh `package-lock.json` against the current `package.json` ranges. Commit the lockfile if it changed, as `⬆️: update npm packages` (⬆️ is gitmoji's "upgrade dependencies"; 📦️ is for compiled files or packages you produce, not for dependency updates).
 
 4. **Check**: run the project's check scripts — `npm run check`, `npm run lint` (add `npm test` if the repo gains a test script). All must pass before continuing; fix anything the package update broke.
 
