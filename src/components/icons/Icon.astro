@@ -1,7 +1,9 @@
 ---
-type Props = astroHTML.JSX.SVGAttributes;
+import type {IconProps} from "./types";
+type Props = IconProps;
 
 const {class: className, ...rest} = Astro.props;
+delete rest.idPrefix;
 ---
 
 <svg

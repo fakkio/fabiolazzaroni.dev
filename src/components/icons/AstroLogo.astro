@@ -10,17 +10,15 @@
 // only officially published fills: solid #17191E on a light surface, the
 // official gradient logomark on a dark one.
 //
-// `id` isn't a DOM id — like NodejsLogo, it namespaces the gradient so two
+// `idPrefix` namespaces the gradient so two
 // instances on the same page don't collide.
+import type {IconProps} from "./types";
 import Icon from "./Icon.astro";
 
-interface Props extends astroHTML.JSX.SVGAttributes {
-  inverted?: boolean;
-  id?: string;
-}
+type Props = IconProps & {inverted?: boolean};
 
-const {inverted, id, class: className, ...rest} = Astro.props;
-const gradientId = `astro-mark-gradient${id ? `-${id}` : ""}`;
+const {inverted, idPrefix, class: className, ...rest} = Astro.props;
+const gradientId = `astro-mark-gradient${idPrefix ? `-${idPrefix}` : ""}`;
 ---
 
 <Icon

@@ -3,19 +3,18 @@
 // against reuse, so the gradient and clip-path ids are namespaced by a
 // caller-supplied key instead — needed wherever the logo renders more than
 // once on the same page.
+import type {IconProps} from "./types";
 import Icon from "./Icon.astro";
 
-interface Props extends astroHTML.JSX.SVGAttributes {
-  id: string;
-}
+type Props = IconProps & {idPrefix: string};
 
-const {id, ...rest} = Astro.props;
+const {idPrefix, ...rest} = Astro.props;
 ---
 
 <Icon viewBox="0 0 28.113 32" {...rest}>
   <defs>
     <linearGradient
-      id={`node-gradient-1-${id}`}
+      id={`node-gradient-1-${idPrefix}`}
       x1="278.754"
       y1="192.087"
       x2="279.111"
@@ -28,7 +27,7 @@ const {id, ...rest} = Astro.props;
       <stop offset=".8" stop-color="#5aad45"></stop>
     </linearGradient>
     <linearGradient
-      id={`node-gradient-2-${id}`}
+      id={`node-gradient-2-${idPrefix}`}
       x1="277.773"
       y1="200.005"
       x2="278.005"
@@ -41,7 +40,7 @@ const {id, ...rest} = Astro.props;
       <stop offset="1" stop-color="#76ac64"></stop>
     </linearGradient>
     <linearGradient
-      id={`node-gradient-3-${id}`}
+      id={`node-gradient-3-${idPrefix}`}
       x1="275.682"
       y1="199.336"
       x2="275.892"
@@ -55,37 +54,38 @@ const {id, ...rest} = Astro.props;
       <stop offset=".7" stop-color="#659e5a"></stop>
       <stop offset=".9" stop-color="#3e863d"></stop>
     </linearGradient>
-    <clipPath id={`node-clip-1-${id}`}>
+    <clipPath id={`node-clip-1-${idPrefix}`}>
       <path
         fill="none"
         d="M13.3.202L.758 7.442A1.514 1.514 0 000 8.752v14.488a1.513 1.513 0 00.758 1.312L13.3 31.797a1.518 1.518 0 001.515 0l12.54-7.244a1.517 1.517 0 00.757-1.312V8.753a1.514 1.514 0 00-.76-1.312L14.816.202a1.525 1.525 0 00-1.519 0"
       ></path>
     </clipPath>
-    <clipPath id={`node-clip-2-${id}`}>
+    <clipPath id={`node-clip-2-${idPrefix}`}>
       <path
         fill="none"
         d="M.31 24.161a1.518 1.518 0 00.447.392l10.759 6.214 1.792 1.03a1.52 1.52 0 00.874.198 1.549 1.549 0 00.297-.054L27.707 7.72a1.5 1.5 0 00-.353-.28l-8.212-4.743-4.34-2.497a1.583 1.583 0 00-.394-.158z"
       ></path>
     </clipPath>
-    <clipPath id={`node-clip-3-${id}`}>
+    <clipPath id={`node-clip-3-${idPrefix}`}>
       <path
         fill="none"
         d="M13.906.008a1.53 1.53 0 00-.606.194L.794 7.421 14.28 31.983a1.504 1.504 0 00.538-.186l12.542-7.244a1.52 1.52 0 00.732-1.035L14.345.033a1.575 1.575 0 00-.307-.03c-.041 0-.083.002-.125.006"
       ></path>
     </clipPath>
   </defs>
-  <g clip-path={`url(#node-clip-1-${id})`}>
+  <g clip-path={`url(#node-clip-1-${idPrefix})`}>
     <path
       d="M40.787 6.212L5.446-11.11l-18.12 36.965 35.34 17.324z"
-      fill={`url(#node-gradient-1-${id})`}></path>
+      fill={`url(#node-gradient-1-${idPrefix})`}></path>
   </g>
-  <g clip-path={`url(#node-clip-2-${id})`}>
+  <g clip-path={`url(#node-clip-2-${idPrefix})`}>
     <path
       d="M-14.97 11.336L9.986 45.11l33.002-24.383-24.955-33.773z"
-      fill={`url(#node-gradient-2-${id})`}></path>
+      fill={`url(#node-gradient-2-${idPrefix})`}></path>
   </g>
-  <g clip-path={`url(#node-clip-3-${id})`}>
-    <path d="M.794.003v31.98h27.293V.004z" fill={`url(#node-gradient-3-${id})`}
-    ></path>
+  <g clip-path={`url(#node-clip-3-${idPrefix})`}>
+    <path
+      d="M.794.003v31.98h27.293V.004z"
+      fill={`url(#node-gradient-3-${idPrefix})`}></path>
   </g>
 </Icon>
