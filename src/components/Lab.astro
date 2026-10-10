@@ -13,37 +13,30 @@ import PostgresLogo from "./icons/PostgresLogo.astro";
 import ReactLogo from "./icons/ReactLogo.astro";
 import TypescriptLogo from "./icons/TypescriptLogo.astro";
 
-// Labels corrected to official branding here per #15 (ReactJs -> React,
-// GraphQl -> GraphQL) — Bio.astro's own mentions of these technologies are
-// untouched, since that fix was scoped to this list alone.
-export type Technology =
-  | "react"
-  | "typescript"
-  | "graphql"
-  | "node"
-  | "postgres"
-  | "docker"
-  | "js"
-  | "css"
-  | "html"
-  | "astro"
-  | "csharp"
-  | "dotnet";
+// Labels follow official branding here (ReactJs -> React, GraphQl -> GraphQL)
+// — Bio.astro's own mentions of these technologies are untouched, since that
+// fix was scoped to this list alone.
+interface TechnologyEntry {
+  component: (props: {idPrefix: string; "aria-label": string}) => unknown;
+  label: string;
+}
 
-const LABELS: Record<Technology, string> = {
-  react: "React",
-  typescript: "TypeScript",
-  graphql: "GraphQL",
-  node: "Node.js",
-  postgres: "PostgreSQL",
-  docker: "Docker",
-  js: "JavaScript",
-  css: "CSS",
-  html: "HTML",
-  astro: "Astro",
-  csharp: "C#",
-  dotnet: ".NET",
-};
+const TECHNOLOGIES = {
+  react: {component: ReactLogo, label: "React"},
+  typescript: {component: TypescriptLogo, label: "TypeScript"},
+  graphql: {component: GraphqlLogo, label: "GraphQL"},
+  node: {component: NodejsLogo, label: "Node.js"},
+  postgres: {component: PostgresLogo, label: "PostgreSQL"},
+  docker: {component: DockerLogo, label: "Docker"},
+  js: {component: JavaScriptLogo, label: "JavaScript"},
+  css: {component: CssLogo, label: "CSS"},
+  html: {component: HTMLLogo, label: "HTML"},
+  astro: {component: AstroLogo, label: "Astro"},
+  csharp: {component: CSharpLogo, label: "C#"},
+  dotnet: {component: DotnetLogo, label: ".NET"},
+} satisfies Record<string, TechnologyEntry>;
+
+export type Technology = keyof typeof TECHNOLOGIES;
 
 interface Props {
   desc: string;
@@ -55,9 +48,9 @@ interface Props {
 }
 
 const {desc, id, name, repo, technologies, url} = Astro.props;
-// NodejsLogo, AstroLogo and CSharpLogo all need a caller-supplied id when they
-// render more than once on the page — reuse this lab's slug for that.
-const gradientId = `lab-${id}`;
+// Every logo takes this prefix; the ones that define their own SVG gradients or
+// clip paths use it to namespace them, the rest ignore it.
+const idPrefix = `lab-${id}`;
 ---
 
 <li class="lab">
@@ -72,34 +65,14 @@ const gradientId = `lab-${id}`;
   <p class="description">{desc}</p>
   <ul class="technologiesList">
     {
-      technologies.map((technology) => (
-        <li>
-          {technology === "react" && <ReactLogo aria-label={LABELS.react} />}
-          {technology === "typescript" && (
-            <TypescriptLogo aria-label={LABELS.typescript} />
-          )}
-          {technology === "graphql" && (
-            <GraphqlLogo aria-label={LABELS.graphql} />
-          )}
-          {technology === "node" && (
-            <NodejsLogo id={gradientId} aria-label={LABELS.node} />
-          )}
-          {technology === "postgres" && (
-            <PostgresLogo aria-label={LABELS.postgres} />
-          )}
-          {technology === "docker" && <DockerLogo aria-label={LABELS.docker} />}
-          {technology === "js" && <JavaScriptLogo aria-label={LABELS.js} />}
-          {technology === "css" && <CssLogo aria-label={LABELS.css} />}
-          {technology === "html" && <HTMLLogo aria-label={LABELS.html} />}
-          {technology === "astro" && (
-            <AstroLogo id={gradientId} aria-label={LABELS.astro} />
-          )}
-          {technology === "csharp" && (
-            <CSharpLogo id={gradientId} aria-label={LABELS.csharp} />
-          )}
-          {technology === "dotnet" && <DotnetLogo aria-label={LABELS.dotnet} />}
-        </li>
-      ))
+      technologies.map((technology) => {
+        const {component: Logo, label} = TECHNOLOGIES[technology];
+        return (
+          <li>
+            <Logo idPrefix={idPrefix} aria-label={label} />
+          </li>
+        );
+      })
     }
   </ul>
 </li>

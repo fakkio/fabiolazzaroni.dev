@@ -1,10 +1,11 @@
 ---
+import type {IconProps} from "./types";
 // The official .NET logo from github.com/dotnet/brand (logo/dotnet-logo.svg),
 // verbatim: the brand guidelines want it unaltered, so it keeps its purple
 // square in both themes.
 import Icon from "./Icon.astro";
 
-type Props = astroHTML.JSX.SVGAttributes;
+type Props = IconProps;
 ---
 
 <Icon viewBox="0 0 456 456" {...Astro.props}>

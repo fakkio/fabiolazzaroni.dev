@@ -5,16 +5,15 @@
 // only the viewBox is cropped to the hexagon, dropping the source's empty
 // margin so it sits the same size as the other logos.
 //
-// `id` isn't a DOM id — like NodejsLogo, it namespaces the gradient so two
+// `idPrefix` namespaces the gradient so two
 // instances on the same page don't collide.
+import type {IconProps} from "./types";
 import Icon from "./Icon.astro";
 
-interface Props extends astroHTML.JSX.SVGAttributes {
-  id: string;
-}
+type Props = IconProps & {idPrefix: string};
 
-const {id, ...rest} = Astro.props;
-const gradientId = `csharp-gradient-${id}`;
+const {idPrefix, ...rest} = Astro.props;
+const gradientId = `csharp-gradient-${idPrefix}`;
 ---
 
 <Icon viewBox="8 4.9 56 62.2" {...rest}>
