@@ -64,7 +64,9 @@ const labs: LabData[] = [
 ---
 
 <ul class="labs">
-  {labs.map((lab) => <Lab {...lab} />)}
+  {labs.map((lab) => (
+    <Lab {...lab} />
+  ))}
 </ul>
 
 <style>

@@ -64,16 +64,14 @@ const idPrefix = `lab-${id}`;
   </h3>
   <p class="description">{desc}</p>
   <ul class="technologiesList">
-    {
-      technologies.map((technology) => {
-        const {component: Logo, label} = TECHNOLOGIES[technology];
-        return (
-          <li>
-            <Logo idPrefix={idPrefix} aria-label={label} />
-          </li>
-        );
-      })
-    }
+    {technologies.map((technology) => {
+      const {component: Logo, label} = TECHNOLOGIES[technology];
+      return (
+        <li>
+          <Logo idPrefix={idPrefix} aria-label={label} />
+        </li>
+      );
+    })}
   </ul>
 </li>
 
